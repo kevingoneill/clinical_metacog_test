@@ -15,6 +15,7 @@ var information = {
         return true;
     }
 };
+/////////////test
 
 // the consent form
 var consent = {
