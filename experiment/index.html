@@ -1,0 +1,112 @@
+<!Doctype html>
+<meta charset="UTF-8">
+<html>
+
+<head>
+    <title></title>
+    <!-- import jspsych and jspsych plugins -->
+    <script src="https://unpkg.com/jspsych@8.1.0"></script>
+    <link href="https://unpkg.com/jspsych@8.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    <script src="https://unpkg.com/@jspsych/plugin-external-html@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@2.0.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@2.0.0"></script>
+    <script src="utilities.js"></script>
+    <style>
+        /* insert CSS styling here */
+    </style>
+</head>
+
+<body></body>
+
+<script>
+    ///////////////////////////////////////////////////////////////////////////////
+    //                              Task parameters
+    ///////////////////////////////////////////////////////////////////////////////
+    var EXPERIMENT_WIDTH = 600;
+    var MINIMUM_VALID_RT = 250;   // minimum valid reaction time (ms)
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //                          Initialize jsPsych/JATOS
+    ///////////////////////////////////////////////////////////////////////////////
+    var JATOS = false;  // if true, load JATOS. use 'false' to run on a local server
+    if (JATOS) {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'jatos.js';
+    }
+
+    // initialize jsPsych
+    var jsPsych = initJsPsych({
+        experiment_width: EXPERIMENT_WIDTH,
+        minimum_valid_rt: MINIMUM_VALID_RT,
+        on_finish: function (data) {
+            // Display completion screen
+            jsPsych.getDisplayElement().innerHTML =
+                '<div><p>Thanks for completing this experiment!</p><br>' +
+                data.csv();
+
+            // Use this to save data via JATOS
+            if (JATOS) {
+                jatos.endStudy(data.csv());
+            }
+        }
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //                            Randomized Conditions
+    ///////////////////////////////////////////////////////////////////////////////
+    
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //                     Randomize participant-level data
+    ///////////////////////////////////////////////////////////////////////////////
+    var participant_id = jsPsych.randomization.randomID(15);
+    jsPsych.data.addProperties({
+        participant_id: participant_id
+    });   
+</script>
+<script src="experiment.js"></script>
+<script>
+    // import WebR to run R in browser
+    import('https://webr.r-wasm.org/latest/webr.mjs').then(
+        async ({ WebR }) => {
+            // init webR and load packages
+            const webR = new WebR();
+            await webR.init();
+            
+            // test output
+            let result = await webR.evalR('rnorm(1,0,1)');
+            let output = await result.toArray();
+            console.log('Result of running `rnorm` from webR: ', output);
+        }
+    );
+    
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //                         Launch experiment
+    ///////////////////////////////////////////////////////////////////////////////
+    var run = function () {
+        jsPsych.run([
+            //fullscreen(true), 
+            browser_check, information, consent,
+            instructions, // pre-experiment questions
+            // task (training)
+            // task (staircase)
+            // task (test)
+            fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
+        ])
+    }
+
+    // run jsPsych
+    if (JATOS) {
+        jatos.onLoad(run);
+    } else {
+        run();
+    }
+</script>
+
+</html>
