@@ -14,13 +14,23 @@
     <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+
+    <script src="RandomBeeMotion.js"></script>
+    <script src="ConfidenceRating.js"></script>
+    <script src="staircase.js"></script>
     <script src="utilities.js"></script>
+
+
+    
     <style>
         /* insert CSS styling here */
     </style>
 </head>
 
-<body></body>
+<body>
 
 <script>
     ///////////////////////////////////////////////////////////////////////////////
@@ -37,6 +47,7 @@
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = 'jatos.js';
+
     }
 
     // initialize jsPsych
@@ -44,11 +55,18 @@
         experiment_width: EXPERIMENT_WIDTH,
         minimum_valid_rt: MINIMUM_VALID_RT,
         on_finish: function (data) {
+            /*
             // Display completion screen
             jsPsych.getDisplayElement().innerHTML =
                 '<div><p>Thanks for completing this experiment!</p><br>' +
                 data.csv();
+            // 
+            */
+            jsPsych.data.get().localSave('csv', 'experiment_data.csv');
 
+            jsPsych.getDisplayElement().innerHTML =
+                '<div><p>Thanks for completing this experiment!</p><p>Your data has been downloaded as a CSV file.</p></div>';
+        
             // Use this to save data via JATOS
             if (JATOS) {
                 jatos.endStudy(data.csv());
@@ -71,6 +89,7 @@
 </script>
 <script src="experiment.js"></script>
 <script>
+    /*
     // import WebR to run R in browser
     import('https://webr.r-wasm.org/latest/webr.mjs').then(
         async ({ WebR }) => {
@@ -84,6 +103,7 @@
             console.log('Result of running `rnorm` from webR: ', output);
         }
     );
+    */
     
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -91,13 +111,17 @@
     ///////////////////////////////////////////////////////////////////////////////
     var run = function () {
         jsPsych.run([
-            //fullscreen(true), 
+            fullscreen(true), 
+            preload,
+            //example_confidence_rt,
+            //instruction_5,
+            //example_stimuli, // example stimuli to show the RDM
+            //confidence_rt,
+            //example_confidence_rt,
             browser_check, information, consent,
-            instructions, // pre-experiment questions
-            // task (training)
-            // task (staircase)
-            // task (test)
-            fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
+            instructions, 
+            main_task, // main task procedure
+            //fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
         ])
     }
 
@@ -108,5 +132,5 @@
         run();
     }
 </script>
-
+</body>
 </html>
