@@ -1,18 +1,4 @@
 ///////////////////////////////////////////////////////////////////////////////
-//                         Parameters
-///////////////////////////////////////////////////////////////////////////////
-// trial numbers
-var n_decision_practice = 5; // number of decision trials for practice
-var n_confidence_practice = 3; // number of confidence trials for practice
-var n_main = 5; // number of main trials
-
-//var n_block = 4; // number of blocks in the main task
-
-// for tracking rdm properties
-var current_correct_direction = null;
-var current_coherence_level = null;
-
-///////////////////////////////////////////////////////////////////////////////
 //                         Pre-experiment questions
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -73,8 +59,8 @@ var instruction_1 = {
     show_page_number: false,
     pages: [
         `<h1>Welcome to the task!</h2>
-        <p>In this task, you'll watch bees🐝 perform their <strong>waggle dance</strong>—a way they show other bees where to find flowers and nesting sites.</p>
-        <p>🔍Please help us observe the <strong>direction </strong> of the waggle dance! </p>
+        <p>In this task, you'll watch bees 🐝 perform their <strong>waggle dance</strong>—a way they show other bees where to find flowers and nesting sites.</p>
+        <p>🔍 Please help us observe the <strong>direction </strong> of the waggle dance! </p>
         `
     ],
     allow_backward: false,
@@ -87,7 +73,7 @@ var example_stimuli = {
     stimulus: function() {
         return createRDMContainer(RDM_box_width, RDM_box_height, 
             "The waggle dance looks like this",
-            "💡The movement looks messy, but if you look closely, the majority is moving to one direction."
+            "💡 The movement looks messy, but if you look closely, the majority is moving to one direction."
         );
     },
     choices: ['Got it!'],// navigation buttons
@@ -132,17 +118,20 @@ var instruction_3 = {
     pages: [
         `<p> In addition, after your decision, we will tell you whether your judgment was correct.</p>
         <p> Now, let's practice a few times.</p>
-        <p> ⚠️The bees will appear for a very short time, so please pay attention!</p>`
+        <p> ⚠️ The bees will appear for a very short time, so please pay attention!</p>`
     ],
     allow_backward: false,
-    button_label_next: '🐝Start!'
+    button_label_next: '🐝 Start!'
 };
 
 var iti = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: '',          // blank screen
     choices: "NO_KEYS",   // no response
-    trial_duration: 500    // ITI duration in ms
+    trial_duration: 500,    // ITI duration in ms
+    data: {
+        task: 'ITI',
+    }
 };
 
 // stimuli used in practice and main trials
@@ -161,7 +150,9 @@ var stimuli = {
         }
     },
     on_load: function() {
-        startRDM(coherence);
+        // dynamically set the RDM direction
+        let direction_rad = jsPsych.evaluateTimelineVariable('direction') == 'left' ? Math.PI : 0;
+        startRDM(coherence, set_direction=direction_rad);
     }
 };
 
@@ -287,7 +278,7 @@ var confidence_rt = {
     questions: [
         {
             prompt: "How confident are you in your judgment?",
-            labels: ["😟Not sure at all", "😐Slighty confident", "🙂Very confident", "😊Extremely confident"],
+            labels: ["😟 Not sure at all", "😐 Slighty confident", "🙂 Very confident", "😊 Extremely confident"],
             required: true
         }
     ],
@@ -316,7 +307,7 @@ var instruction_6 = {
         <p>Take a deep breath, stay focused, and let’s begin.</p>`
     ],
     allow_backward: false,
-    button_label_next: '🐝Start!'
+    button_label_next: '🐝 Start!'
 };
 
 
@@ -340,8 +331,8 @@ var instructions = {
 };
 
 var main_task = {
-    timeline: [iti, stimuli, rdm_decision, confidence_rt],//confidence_rt],
-    repetitions: n_main,
+    timeline: [iti, stimuli, rdm_decision, confidence_rt],
+    timeline_variables: main_task_variables,
     data: { phase: 'main_task' }
   };
 

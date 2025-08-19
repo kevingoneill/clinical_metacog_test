@@ -1,22 +1,3 @@
-// these are to be detmermined to opitimize the staircase
-var coherence = 0.3; // starting coherence level
-var step_size = 0.05; // initial step size
-var min_step_size = 0.01; // minimum step size
-
-var stairCaseUp = 0;
-var stairCaseDown = 0;
-var trial_count = 0; //****** maybe put it somewhere else? ******
-var min_coherence = 0.01; // minimum coherence level
-var max_coherence = 0.95;
-
-var reversal_step_reduction = 0.75; // factor to reduce step size after reversals
-var convergence_reversals = 4; // number of reversals before reducing step size
-
-var reversals = []; // track all reversal points
-var previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
-//var cohCollected = []; // activate if you want to view coherence history
-//var reversalCollected = [];
-
 function staircaseEvaluator(correct) {
     trial_count++; // increment trial count **** need to make sure this is called only once per trial ****
     var direction_changed = false; // flag to track if direction changed

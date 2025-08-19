@@ -1,21 +1,3 @@
-// basic RDM parameters
-var RDM_DotSpeed = 2; 
-var RDM_numDots = 100; 
-var RDM_duration = 1000;
-var example_coherence = 0.6; // coherence for the example RDM
-var example_direction = Math.PI; // direction for the example RDM (left)
-
-// dimensions
-var RDM_radius = 150;
-var RDM_box_width = 500;
-var RDM_box_height = 500;
-var RDM_Dot_size = 16; // size of the dots
-
-// images
-var backgroundImage = 'img/meadow.jpg';
-var RDM_bg_opacity = 0.2; // opacity of the background image (larger means more opaque)
-var dotImage = 'img/imgBee.png';
-
 function createRDMContainer(width, height, mainText, bottomText = '') {
     return `
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
@@ -96,7 +78,8 @@ function startRDM(set_coherence = coherence, set_direction = null) {
         let y = centerY + r * Math.sin(angle);
         
         // apply coherence with some noise, so that the coherence is not exactly the same every time
-        let isCoherent = Math.random() < (current_coherence + gaussianRandom(0, 0.05)); 
+        let isCoherent = Math.random() < current_coherence;
+        //let isCoherent = Math.random() < (current_coherence + jsPsych.randomization.sampleNormal(0, 0.05));
         // if the dot is coherent, move in the specified left/right direction, otherwise random direction (2pi)
         let moveAngle = isCoherent ? direction : Math.random() * 2 * Math.PI;
         
@@ -138,15 +121,13 @@ function startRDM(set_coherence = coherence, set_direction = null) {
             Dot.x += Dot.speed * Math.cos(Dot.moveAngle);
             Dot.y += Dot.speed * Math.sin(Dot.moveAngle);
 
-            // compute distance from the center (use dist() if using p5.js)
-            const dx = Dot.x - centerX;
-            const dy = Dot.y - centerY;
-            const d = Math.sqrt(dx * dx + dy * dy);
+            // compute distance from the center
+            const d = distance(Dot.x, Dot.y, centerX, centerY);
             
             // check if the dot edge is within the circle area
             if (d - RDM_Dot_size/2> radius) {
                 // Wrap to opposite side
-                const angle = Math.atan2(dy, dx) + Math.PI;
+                const angle = Math.atan2(Dot.y-centerY, Dot.x-centerX) + Math.PI;
                 Dot.x = centerX + (radius - RDM_Dot_size/2) * Math.cos(angle);
                 // for incoherent dots, set y position randomly within the circle area
                 if (!Dot.isCoherent) {
@@ -164,15 +145,5 @@ function startRDM(set_coherence = coherence, set_direction = null) {
     };
     
     animate(); 
-    
-}
-
-// Standard Normal variate using Box-Muller transform.
-function gaussianRandom(mean=0, stdev=1) {
-    const u = 1 - Math.random(); // Converting [0,1) to (0,1]
-    const v = Math.random();
-    const z = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
-    // Transform to the desired mean and standard deviation:
-    return z * stdev + mean;
 }
 

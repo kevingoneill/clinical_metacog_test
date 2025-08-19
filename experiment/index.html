@@ -22,8 +22,6 @@
     <script src="ConfidenceRating.js"></script>
     <script src="staircase.js"></script>
     <script src="utilities.js"></script>
-
-
     
     <style>
         /* insert CSS styling here */
@@ -38,6 +36,53 @@
     ///////////////////////////////////////////////////////////////////////////////
     var EXPERIMENT_WIDTH = 600;
     var MINIMUM_VALID_RT = 250;   // minimum valid reaction time (ms)
+    
+    // trial numbers
+    var n_decision_practice = 5; // number of decision trials for practice
+    var n_confidence_practice = 3; // number of confidence trials for practice
+    var n_main = 5; // number of main trials
+    //var n_block = 4; // number of blocks in the main task
+
+    // for tracking rdm properties
+    var current_correct_direction = null;
+    var current_coherence_level = null;
+
+    // basic RDM parameters
+    var RDM_DotSpeed = 2;
+    var RDM_numDots = 100;
+    var RDM_duration = 1000;
+    var example_coherence = 0.6; // coherence for the example RDM
+    var example_direction = Math.PI; // direction for the example RDM (left)
+
+    // dimensions
+    var RDM_radius = 150;
+    var RDM_box_width = 500;
+    var RDM_box_height = 500;
+    var RDM_Dot_size = 16; // size of the dots
+
+    // images
+    var backgroundImage = 'img/meadow.jpg';
+    var RDM_bg_opacity = 0.2; // opacity of the background image (larger means more opaque)
+    var dotImage = 'img/imgBee.png';
+
+    // staircase parameters
+    var coherence = 0.3; // starting coherence level
+    var step_size = 0.05; // initial step size
+    var min_step_size = 0.01; // minimum step size
+
+    var stairCaseUp = 0;
+    var stairCaseDown = 0;
+    var trial_count = 0; //****** maybe put it somewhere else? ******
+    var min_coherence = 0.01; // minimum coherence level
+    var max_coherence = 0.95;
+
+    var reversal_step_reduction = 0.75; // factor to reduce step size after reversals
+    var convergence_reversals = 4; // number of reversals before reducing step size
+
+    var reversals = []; // track all reversal points
+    var previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
+    //var cohCollected = []; // activate if you want to view coherence history
+    //var reversalCollected = [];
 
     ///////////////////////////////////////////////////////////////////////////////
     //                          Initialize jsPsych/JATOS
@@ -55,18 +100,16 @@
         experiment_width: EXPERIMENT_WIDTH,
         minimum_valid_rt: MINIMUM_VALID_RT,
         on_finish: function (data) {
-            /*
+            
             // Display completion screen
             jsPsych.getDisplayElement().innerHTML =
-                '<div><p>Thanks for completing this experiment!</p><br>' +
-                data.csv();
-            // 
-            */
-            jsPsych.data.get().localSave('csv', 'experiment_data.csv');
+                `<div><p>Thanks for completing this experiment!</p>
+                    <p>
+                        <button id="save" class="jspsych-btn" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
+                            Click here to download your data as a CSV file.
+                        </button>
+                    </p></div>`;
 
-            jsPsych.getDisplayElement().innerHTML =
-                '<div><p>Thanks for completing this experiment!</p><p>Your data has been downloaded as a CSV file.</p></div>';
-        
             // Use this to save data via JATOS
             if (JATOS) {
                 jatos.endStudy(data.csv());
@@ -77,7 +120,16 @@
     ///////////////////////////////////////////////////////////////////////////////
     //                            Randomized Conditions
     ///////////////////////////////////////////////////////////////////////////////
-    
+    var main_task_variables = jsPsych.randomization.shuffle(seq(1, n_main).map(i => {
+        return {
+            // pseudo-randomly assign RDM direction
+            direction: i < n_main / 2 ? 'left' : 'right'
+        }
+    })).map((o, i) => {
+        // assign trial number after shuffling
+        o.trial = i;
+        return o;
+    });
 
     ///////////////////////////////////////////////////////////////////////////////
     //                     Randomize participant-level data
@@ -111,15 +163,15 @@
     ///////////////////////////////////////////////////////////////////////////////
     var run = function () {
         jsPsych.run([
-            fullscreen(true), 
+            //fullscreen(true), 
             preload,
             //example_confidence_rt,
             //instruction_5,
             //example_stimuli, // example stimuli to show the RDM
             //confidence_rt,
             //example_confidence_rt,
-            browser_check, information, consent,
-            instructions, 
+            //browser_check, information, consent,
+            //instructions, 
             main_task, // main task procedure
             //fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
         ])
