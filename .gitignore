@@ -1,3 +1,6 @@
 **/.DS_Store
 **/*.*~
 analysis/metad_summary
+_includes/*
+yarn.lock
+node_modules/*

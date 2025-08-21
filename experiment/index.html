@@ -117,6 +117,30 @@
         }
     });
 
+    // import WebR to run R in browser
+    /*
+    import('https://webr.r-wasm.org/latest/webr.mjs').then(
+        async ({ WebR }) => {
+            // init webR, load packages, and functions for M-ratio
+            let webR = new WebR();
+            await webR.init();
+            await webR.installPackages(['readr', 'dplyr', 'tidyr', 'tibble']); //, 'rstan']);
+            let mratio = await fetch('../analysis/m_ratio.R');
+            await webR.evalR(await mratio.text());
+
+            // load the data as a csv into webR
+            //await webR.objs.globalEnv.bind('file', data.csv());
+            let file = await fetch('../data/pilot/experiment_data.csv').then(f => f.text());
+            await webR.objs.globalEnv.bind('file', file);
+
+            // test output
+            let result = await webR.evalR('read_csv(file)');
+            let output = await result.toD3();
+            console.log(output);
+        }
+    );
+    */
+
     ///////////////////////////////////////////////////////////////////////////////
     //                            Randomized Conditions
     ///////////////////////////////////////////////////////////////////////////////
@@ -141,23 +165,6 @@
 </script>
 <script src="experiment.js"></script>
 <script>
-    /*
-    // import WebR to run R in browser
-    import('https://webr.r-wasm.org/latest/webr.mjs').then(
-        async ({ WebR }) => {
-            // init webR and load packages
-            const webR = new WebR();
-            await webR.init();
-            
-            // test output
-            let result = await webR.evalR('rnorm(1,0,1)');
-            let output = await result.toArray();
-            console.log('Result of running `rnorm` from webR: ', output);
-        }
-    );
-    */
-    
-
     ///////////////////////////////////////////////////////////////////////////////
     //                         Launch experiment
     ///////////////////////////////////////////////////////////////////////////////
