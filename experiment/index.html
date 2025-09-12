@@ -40,12 +40,11 @@
     // trial numbers
     var n_decision_practice = 5; // number of decision trials for practice
     var n_confidence_practice = 3; // number of confidence trials for practice
-    var n_main = 5; // number of main trials
-    //var n_block = 4; // number of blocks in the main task
+    var n_block = 2; // number of blocks in the main task
+    var n_per_block = 2;
+    var n_main = n_block * n_per_block; // number of main trials
 
-    // for tracking rdm properties
-    var current_correct_direction = null;
-    var current_coherence_level = null;
+
 
     // basic RDM parameters
     var RDM_DotSpeed = 2;
@@ -54,7 +53,7 @@
     var example_coherence = 0.6; // coherence for the example RDM
     var example_direction = Math.PI; // direction for the example RDM (left)
 
-    // dimensions
+    // RDM dimensions
     var RDM_radius = 150;
     var RDM_box_width = 500;
     var RDM_box_height = 500;
@@ -72,7 +71,6 @@
 
     var stairCaseUp = 0;
     var stairCaseDown = 0;
-    var trial_count = 0; //****** maybe put it somewhere else? ******
     var min_coherence = 0.01; // minimum coherence level
     var max_coherence = 0.95;
 
@@ -81,8 +79,6 @@
 
     var reversals = []; // track all reversal points
     var previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
-    //var cohCollected = []; // activate if you want to view coherence history
-    //var reversalCollected = [];
 
     ///////////////////////////////////////////////////////////////////////////////
     //                          Initialize jsPsych/JATOS
@@ -144,16 +140,37 @@
     ///////////////////////////////////////////////////////////////////////////////
     //                            Randomized Conditions
     ///////////////////////////////////////////////////////////////////////////////
-    var main_task_variables = jsPsych.randomization.shuffle(seq(1, n_main).map(i => {
-        return {
+
+    function createTaskVariables(n) {
+        return jsPsych.randomization.shuffle(seq(1, n).map(i => ({
             // pseudo-randomly assign RDM direction
-            direction: i < n_main / 2 ? 'left' : 'right'
+            direction: i < n / 2 ? 'left' : 'right'
+            }))
+        ).map((o, i) => {
+            o.trial = i + 1; // assign trial number after shuffling
+            return o;
+        });
+    }
+
+    var decision_practice_variables   = createTaskVariables(n_decision_practice);
+    var confidence_practice_variables = createTaskVariables(n_confidence_practice);
+    var main_task_variables           = createTaskVariables(n_main);
+
+    function splitIntoBlocks(variables, n_block) {
+        const blocks = [];
+        
+        for (let i = 0; i < n_block; i++) {
+            const block_vars = variables.slice(i * n_per_block, (i + 1) * n_per_block);
+            block_vars.forEach((v, j) => {
+                v.block = i + 1;
+                v.trial_in_block = j + 1;
+            });
+            blocks.push(block_vars);
         }
-    })).map((o, i) => {
-        // assign trial number after shuffling
-        o.trial = i;
-        return o;
-    });
+        return blocks;
+    }
+
+    var main_task_block_variables = splitIntoBlocks(main_task_variables, n_block);
 
     ///////////////////////////////////////////////////////////////////////////////
     //                     Randomize participant-level data
@@ -172,14 +189,10 @@
         jsPsych.run([
             //fullscreen(true), 
             preload,
-            //example_confidence_rt,
-            //instruction_5,
-            //example_stimuli, // example stimuli to show the RDM
-            //confidence_rt,
-            //example_confidence_rt,
             //browser_check, information, consent,
             //instructions, 
             main_task, // main task procedure
+            global_confidnece
             //fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
         ])
     }
@@ -190,6 +203,145 @@
     } else {
         run();
     }
+</script>
+
+<script type="module">
+    import StanModel from "https://cdn.jsdelivr.net/npm/tinystan/+esm"; // import directly from jsDelivr
+    import createModule from "../analysis/metad.js";
+  
+    // simple print callback to replace printCallbackSponge because it cannot be directly imported in esm version
+    function makePrintCallback() {
+      let buffer = "";
+      return {
+        printCallback: (s) => { buffer += s + "\n"; },
+        getStdout: () => buffer,
+        clearStdout: () => { buffer = ""; }
+      };
+    }
+    const { printCallback, getStdout, clearStdout } = makePrintCallback();
+  
+    // load and format data using WebR
+    async function analyze() {
+        
+        const { WebR } = await import("https://webr.r-wasm.org/latest/webr.mjs");
+
+        // init webR
+        let webR = new WebR();
+        await webR.init();
+        await webR.installPackages(["readr", "dplyr", "tidyr", "tibble"]);
+
+        // load custom R functions
+        let mratio = await fetch("../analysis/m_ratio.R");
+        await webR.evalR(await mratio.text());
+
+        // load data
+        let res = await fetch("../data/pilot/experiment_data.csv");
+        let file = await res.text();
+        await webR.objs.globalEnv.bind("file", file);
+
+        // run R
+        let result = await webR.evalR("standata(I(file), K=5)");
+        let rawStanData = await result.toJs();
+
+        // data-formatting functions
+        function tidyStanData(raw) {
+            let tidy = {};
+            raw.names.forEach((name, i) => {
+            const val = raw.values[i];
+            if (val.type === "integer" || val.type === "double") {
+                tidy[name] = val.values.length === 1 ? val.values[0] : val.values;
+            } else if (val.type === "logical") {
+                tidy[name] = val.values[0]; // true/false
+            } else {
+                tidy[name] = val.values;
+            }
+            });
+            return tidy;
+        }
+        function reshapeTo3D(flat, dim1, dim2, dim3) {
+            let out = [];
+            let idx = 0;
+            for (let i = 0; i < dim1; i++) {
+                let arr2 = [];
+                for (let j = 0; j < dim2; j++) {
+                let arr3 = [];
+                for (let k = 0; k < dim3; k++) {
+                    arr3.push(flat[idx++]);
+                }
+                arr2.push(arr3);
+                }
+                out.push(arr2);
+            }
+            return out;
+        }
+
+        const StanDataJS = tidyStanData(rawStanData);
+        console.log("Raw Stan data:", rawStanData);
+        console.log("Tidy Stan data:", StanDataJS);
+        console.log('K:', StanDataJS.K);
+        // reshape C from 1D to 2×2×K (because .toJs() flattens arrays)
+        StanDataJS.C = reshapeTo3D(StanDataJS.C, 2, 2, StanDataJS.K);
+
+        StanDataJS.N = Math.floor(StanDataJS.N);
+        StanDataJS.K = Math.floor(StanDataJS.K);
+        StanDataJS.prior_only = StanDataJS.prior_only ? 1 : 0; // convert boolean to integer
+
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 2; j++) {
+                for (let k = 0; k < StanDataJS.K; k++) {
+                    StanDataJS.C[i][j][k] = Math.floor(StanDataJS.C[i][j][k]);
+                }
+            }
+        }
+
+        // load Stan model
+        let model = await StanModel.load(createModule, printCallback);
+
+        console.log(`Stan version: ${model.stanVersion()}`);
+        console.log("StanDataJS keys:", Object.keys(StanDataJS));
+        console.log("StanDataJS:", JSON.stringify(StanDataJS, null, 2));
+        console.log("Type of C[0][0][0]:", typeof StanDataJS.C[0][0][0]);
+        console.log("N:", StanDataJS.N, "K:", StanDataJS.K);
+
+        const testData = {
+            N: 20,
+            K: 5,
+            C: [
+                [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1]], // response=0, accuracy=0,1
+                [[2, 3, 4, 5, 1], [4, 3, 2, 1, 5]]  // response=1, accuracy=0,1
+            ],
+            prior_sd_d_prime: 0.5,
+            prior_sd_c: 0.5,
+            prior_sd_log_M: 0.25,
+            prior_mean_meta_c2: -1.0,
+            prior_sd_meta_c2: 1.0,
+            prior_only: 0
+        };
+
+ 
+        // sample
+        clearStdout();
+        let fit = await model.sample(testData);
+        /*
+        , {
+            iter_warmup: 500,
+            iter_sampling: 1000,
+            chains: 2,
+            seed: 123,
+            refresh: 10,
+        }
+         */
+        console.log("Sampling finished!");
+        console.log(getStdout());
+
+        // extract posterior
+        let draws = fit.draws();
+        console.log("Posterior draws:", draws);
+       
+        }
+
+    analyze();
+  
 </script>
 </body>
 </html>

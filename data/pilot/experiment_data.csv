@@ -1,0 +1,1311 @@
+"success","rt","trial_type","trial_index","plugin_version","time_elapsed","participant_id","timeout","failed_images","failed_audio","failed_video","width","height","webaudio","browser","browser_version","mobile","os","fullscreen","vsync_rate","webcam","microphone","url","phase","view_history","task","coherence","stimulus","response","correct_direction","participant_response","correct","coherence_level","next_coherence","staircase_up","staircase_down","reversals","step_size","trial_number"
+"true","4094","fullscreen","0","2.1.0","5098","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"true","","preload","1","2.0.0","5375","fv0jmanny7kd0lf","false","[]","[]","[]","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+"","","browser-check","2","2.1.0","8620","fv0jmanny7kd0lf","","","","","1512","945","true","chrome","139.0.0","false","Mac OS","true","123.13","true","true","","","","","","","","","","","","","","","","",""
+"","258673","external-html","3","2.0.0","267341","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","information.html","","","","","","","","","","","","","","","",""
+"","106162","external-html","4","2.0.0","373560","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","consent.html","","","","","","","","","","","","","","","",""
+"","45828","instructions","5","2.0.1","419390","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":45828}]","","","","","","","","","","","","","",""
+"","32267","html-button-response","6","2.1.0","451660","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","example_stimuli","0.3","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    The waggle dance looks like this
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            <p style=""text-align: center; font-size: 20px; max-width: 500px;"">
+                                💡The movement looks messy, but if you look closely, the majority is moving to one direction.
+                            </p>
+        </div>
+    ","0","","","","","","","","","",""
+"","4907","instructions","7","2.0.1","456569","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":4907}]","","","","","","","","","","","","","",""
+"","13293","html-button-response","8","2.1.0","469865","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","example_rdm_decision","","<p>During the task, click on the <strong>LEFT</strong> button if you think more bees are moving left, or the <strong>RIGHT</strong> button if you think more bees are moving right.</p><p>Now, click on any button to proceed.</p>","1","","","","","","","","","",""
+"","18070","instructions","9","2.0.1","487936","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":18070}]","","","","","","","","","","","","","",""
+"","null","html-keyboard-response","10","2.1.0","488438","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","11","2.1.0","489441","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.3","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","8045","html-button-response","12","2.1.0","497488","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.3","0.3","1","0","0","0.05","1"
+"","null","html-keyboard-response","13","2.1.0","498491","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","<p style=""color: green; font-size: 24px;"">Correct!</p>","null","","","","","","","","","",""
+"","null","html-keyboard-response","14","2.1.0","498995","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","15","2.1.0","499998","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.3","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","2401","html-button-response","16","2.1.0","502400","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.3","0.25","0","0","0","0.05","2"
+"","null","html-keyboard-response","17","2.1.0","503402","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","<p style=""color: green; font-size: 24px;"">Correct!</p>","null","","","","","","","","","",""
+"","null","html-keyboard-response","18","2.1.0","503905","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","19","2.1.0","504908","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.25","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","7491","html-button-response","20","2.1.0","512401","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.25","0.25","1","0","0","0.05","3"
+"","null","html-keyboard-response","21","2.1.0","513406","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","<p style=""color: green; font-size: 24px;"">Correct!</p>","null","","","","","","","","","",""
+"","null","html-keyboard-response","22","2.1.0","513908","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","23","2.1.0","514912","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.25","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","2283","html-button-response","24","2.1.0","517197","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.25","0.2","0","0","0","0.05","4"
+"","null","html-keyboard-response","25","2.1.0","518199","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","<p style=""color: green; font-size: 24px;"">Correct!</p>","null","","","","","","","","","",""
+"","null","html-keyboard-response","26","2.1.0","518701","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","27","2.1.0","519703","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.2","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","767","html-button-response","28","2.1.0","520472","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.2","0.2","1","0","0","0.05","5"
+"","null","html-keyboard-response","29","2.1.0","521474","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","<p style=""color: green; font-size: 24px;"">Correct!</p>","null","","","","","","","","","",""
+"","26293","instructions","30","2.0.1","547768","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":26293}]","","","","","","","","","","","","","",""
+"","","html-keyboard-response","31","2.1.0","577208","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","example_confidence_rt","","","5","","","","","","","","","",""
+"","8324","instructions","32","2.0.1","585534","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":8323}]","","","","","","","","","","","","","",""
+"","null","html-keyboard-response","33","2.1.0","586037","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","34","2.1.0","587041","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.2","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1695","html-button-response","35","2.1.0","588737","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.2","0.15000000000000002","0","0","0","0.05","6"
+"","","html-keyboard-response","36","2.1.0","590882","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","37","2.1.0","591384","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","38","2.1.0","592385","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.15000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1298","html-button-response","39","2.1.0","593684","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.15000000000000002","0.15000000000000002","1","0","0","0.05","7"
+"","","html-keyboard-response","40","2.1.0","595154","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","41","2.1.0","595656","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","42","2.1.0","596659","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","stimuli","0.15000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","850","html-button-response","43","2.1.0","597510","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.15000000000000002","0.10000000000000002","0","0","0","0.05","8"
+"","","html-keyboard-response","44","2.1.0","598762","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","","local_confidence","","","5","","","","","","","","","",""
+"","24330","instructions","45","2.0.1","623093","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","instructions","[{""page_index"":0,""viewing_time"":24330}]","","","","","","","","","","","","","",""
+"","null","html-keyboard-response","46","2.1.0","623597","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","47","2.1.0","624600","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1232","html-button-response","48","2.1.0","625834","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.10000000000000002","0.10000000000000002","1","0","0","0.05","9"
+"","","html-keyboard-response","49","2.1.0","627323","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","50","2.1.0","627825","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","51","2.1.0","628830","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1505","html-button-response","52","2.1.0","630336","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.10000000000000002","0.05000000000000002","0","0","0","0.05","10"
+"","","html-keyboard-response","53","2.1.0","636764","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","54","2.1.0","637268","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","55","2.1.0","638271","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.05000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","933","html-button-response","56","2.1.0","639205","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.05000000000000002","0.05000000000000002","1","0","0","0.05","11"
+"","","html-keyboard-response","57","2.1.0","640362","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","58","2.1.0","640864","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","59","2.1.0","641867","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.05000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","2048","html-button-response","60","2.1.0","643916","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.05000000000000002","0.01","0","0","0","0.05","12"
+"","","html-keyboard-response","61","2.1.0","645054","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","62","2.1.0","645556","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","63","2.1.0","646558","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.01","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1343","html-button-response","64","2.1.0","647903","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.01","0.060000000000000005","0","0","1","0.05","13"
+"","","html-keyboard-response","65","2.1.0","648964","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","66","2.1.0","649469","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","67","2.1.0","650471","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.060000000000000005","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1801","html-button-response","68","2.1.0","652272","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.060000000000000005","0.060000000000000005","1","0","1","0.05","14"
+"","","html-keyboard-response","69","2.1.0","658725","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","70","2.1.0","659227","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","71","2.1.0","660229","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.060000000000000005","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","796","html-button-response","72","2.1.0","661026","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.060000000000000005","0.010000000000000002","0","0","2","0.05","15"
+"","","html-keyboard-response","73","2.1.0","662026","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","74","2.1.0","662528","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","75","2.1.0","663530","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.010000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1013","html-button-response","76","2.1.0","664544","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.010000000000000002","0.060000000000000005","0","0","3","0.05","16"
+"","","html-keyboard-response","77","2.1.0","665510","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","78","2.1.0","666013","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","79","2.1.0","667014","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.060000000000000005","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1458","html-button-response","80","2.1.0","668473","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.060000000000000005","0.11000000000000001","0","0","3","0.05","17"
+"","","html-keyboard-response","81","2.1.0","670472","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","82","2.1.0","670974","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","83","2.1.0","671976","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.11000000000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","761","html-button-response","84","2.1.0","672737","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.11000000000000001","0.11000000000000001","1","0","3","0.05","18"
+"","","html-keyboard-response","85","2.1.0","673675","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","86","2.1.0","674176","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","87","2.1.0","675180","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.11000000000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1654","html-button-response","88","2.1.0","676834","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.11000000000000001","0.16000000000000003","0","0","3","0.05","19"
+"","","html-keyboard-response","89","2.1.0","678176","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","90","2.1.0","678678","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","91","2.1.0","679680","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1103","html-button-response","92","2.1.0","680783","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.16000000000000003","0.21000000000000002","0","0","3","0.05","20"
+"","","html-keyboard-response","93","2.1.0","682473","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","94","2.1.0","682975","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","95","2.1.0","683976","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.21000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","827","html-button-response","96","2.1.0","684803","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.21000000000000002","0.21000000000000002","1","0","3","0.05","21"
+"","","html-keyboard-response","97","2.1.0","685650","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","98","2.1.0","686152","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","99","2.1.0","687154","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.21000000000000002","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","715","html-button-response","100","2.1.0","687870","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.21000000000000002","0.16000000000000003","0","0","4","0.037500000000000006","22"
+"","","html-keyboard-response","101","2.1.0","688663","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","102","2.1.0","689164","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","103","2.1.0","690167","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","737","html-button-response","104","2.1.0","690905","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.16000000000000003","0.16000000000000003","1","0","4","0.037500000000000006","23"
+"","","html-keyboard-response","105","2.1.0","691751","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","106","2.1.0","692252","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","107","2.1.0","693254","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","987","html-button-response","108","2.1.0","694243","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.16000000000000003","0.12250000000000003","0","0","4","0.037500000000000006","24"
+"","","html-keyboard-response","109","2.1.0","697041","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","110","2.1.0","697543","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","111","2.1.0","698544","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","811","html-button-response","112","2.1.0","699356","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.12250000000000003","0.12250000000000003","1","0","4","0.037500000000000006","25"
+"","","html-keyboard-response","113","2.1.0","700308","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","114","2.1.0","700809","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","115","2.1.0","701810","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","2951","html-button-response","116","2.1.0","704762","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.12250000000000003","0.16000000000000003","0","0","5","0.037500000000000006","26"
+"","","html-keyboard-response","117","2.1.0","706311","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","2","","","","","","","","","",""
+"","null","html-keyboard-response","118","2.1.0","706812","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","119","2.1.0","707813","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","3627","html-button-response","120","2.1.0","711441","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.16000000000000003","0.16000000000000003","1","0","5","0.037500000000000006","27"
+"","","html-keyboard-response","121","2.1.0","714911","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","122","2.1.0","715413","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","123","2.1.0","716414","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","927","html-button-response","124","2.1.0","717342","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.16000000000000003","0.12250000000000003","0","0","6","0.037500000000000006","28"
+"","","html-keyboard-response","125","2.1.0","718792","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","126","2.1.0","719293","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","127","2.1.0","720295","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","3050","html-button-response","128","2.1.0","723346","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","-1","1","false","0.12250000000000003","0.16000000000000003","0","0","7","0.037500000000000006","29"
+"","","html-keyboard-response","129","2.1.0","724587","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","2","","","","","","","","","",""
+"","null","html-keyboard-response","130","2.1.0","725088","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","131","2.1.0","726092","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","690","html-button-response","132","2.1.0","726783","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.16000000000000003","0.16000000000000003","1","0","7","0.037500000000000006","30"
+"","","html-keyboard-response","133","2.1.0","728093","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","134","2.1.0","728594","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","135","2.1.0","729596","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.16000000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","598","html-button-response","136","2.1.0","730194","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.16000000000000003","0.12250000000000003","0","0","8","0.028125000000000004","31"
+"","","html-keyboard-response","137","2.1.0","730997","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","138","2.1.0","731501","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","139","2.1.0","732502","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","961","html-button-response","140","2.1.0","733463","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12250000000000003","0.12250000000000003","1","0","8","0.028125000000000004","32"
+"","","html-keyboard-response","141","2.1.0","736212","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","142","2.1.0","736713","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","143","2.1.0","737717","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","649","html-button-response","144","2.1.0","738367","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12250000000000003","0.09437500000000001","0","0","8","0.028125000000000004","33"
+"","","html-keyboard-response","145","2.1.0","739185","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","146","2.1.0","739686","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","147","2.1.0","740688","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","2115","html-button-response","148","2.1.0","742803","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.09437500000000001","0.09437500000000001","1","0","8","0.028125000000000004","34"
+"","","html-keyboard-response","149","2.1.0","743762","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","150","2.1.0","744263","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","151","2.1.0","745265","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1696","html-button-response","152","2.1.0","746961","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.09437500000000001","0.12250000000000003","0","0","9","0.028125000000000004","35"
+"","","html-keyboard-response","153","2.1.0","749653","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","154","2.1.0","750155","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","155","2.1.0","751159","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","613","html-button-response","156","2.1.0","751772","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12250000000000003","0.12250000000000003","1","0","9","0.028125000000000004","36"
+"","","html-keyboard-response","157","2.1.0","752678","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","158","2.1.0","753179","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","159","2.1.0","754184","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12250000000000003","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","690","html-button-response","160","2.1.0","754875","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12250000000000003","0.09437500000000001","0","0","10","0.028125000000000004","37"
+"","","html-keyboard-response","161","2.1.0","755796","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","162","2.1.0","756297","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","163","2.1.0","757299","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","713","html-button-response","164","2.1.0","758013","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.09437500000000001","0.09437500000000001","1","0","10","0.028125000000000004","38"
+"","","html-keyboard-response","165","2.1.0","758875","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","166","2.1.0","759376","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","167","2.1.0","760380","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","690","html-button-response","168","2.1.0","761070","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.09437500000000001","0.06625","0","0","10","0.028125000000000004","39"
+"","","html-keyboard-response","169","2.1.0","761866","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","170","2.1.0","762368","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","171","2.1.0","763370","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","646","html-button-response","172","2.1.0","764016","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.06625","0.06625","1","0","10","0.028125000000000004","40"
+"","","html-keyboard-response","173","2.1.0","767899","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","174","2.1.0","768401","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","175","2.1.0","769402","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","765","html-button-response","176","2.1.0","770167","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.06625","0.09437500000000001","0","0","11","0.028125000000000004","41"
+"","","html-keyboard-response","177","2.1.0","775600","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","178","2.1.0","776102","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","179","2.1.0","777107","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","762","html-button-response","180","2.1.0","777869","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.09437500000000001","0.09437500000000001","1","0","11","0.028125000000000004","42"
+"","","html-keyboard-response","181","2.1.0","778948","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","182","2.1.0","779450","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","183","2.1.0","780451","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.09437500000000001","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","849","html-button-response","184","2.1.0","781300","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.09437500000000001","0.06625","0","0","12","0.02109375","43"
+"","","html-keyboard-response","185","2.1.0","782163","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","186","2.1.0","782667","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","187","2.1.0","783667","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","928","html-button-response","188","2.1.0","784595","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.06625","0.06625","1","0","12","0.02109375","44"
+"","","html-keyboard-response","189","2.1.0","785653","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","190","2.1.0","786155","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","191","2.1.0","787156","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1373","html-button-response","192","2.1.0","788530","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.06625","0.04515625","0","0","12","0.02109375","45"
+"","","html-keyboard-response","193","2.1.0","790517","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","194","2.1.0","791019","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","195","2.1.0","792021","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.04515625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1863","html-button-response","196","2.1.0","793884","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.04515625","0.06625","0","0","13","0.02109375","46"
+"","","html-keyboard-response","197","2.1.0","794866","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","198","2.1.0","795367","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","199","2.1.0","796369","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1524","html-button-response","200","2.1.0","797894","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.06625","0.06625","1","0","13","0.02109375","47"
+"","","html-keyboard-response","201","2.1.0","799533","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","202","2.1.0","800034","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","203","2.1.0","801035","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.06625","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","6035","html-button-response","204","2.1.0","807071","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.06625","0.08734375","0","0","13","0.02109375","48"
+"","","html-keyboard-response","205","2.1.0","817046","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","2","","","","","","","","","",""
+"","null","html-keyboard-response","206","2.1.0","817549","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","207","2.1.0","818551","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.08734375","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1194","html-button-response","208","2.1.0","819745","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.08734375","0.10843749999999999","0","0","13","0.02109375","49"
+"","","html-keyboard-response","209","2.1.0","821366","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","2","","","","","","","","","",""
+"","null","html-keyboard-response","210","2.1.0","821868","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","211","2.1.0","822869","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10843749999999999","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","799","html-button-response","212","2.1.0","823668","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.10843749999999999","0.10843749999999999","1","0","13","0.02109375","50"
+"","","html-keyboard-response","213","2.1.0","826900","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","214","2.1.0","827401","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","215","2.1.0","828402","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10843749999999999","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","665","html-button-response","216","2.1.0","829067","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.10843749999999999","0.08734375","0","0","14","0.02109375","51"
+"","","html-keyboard-response","217","2.1.0","829862","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","218","2.1.0","830363","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","219","2.1.0","831365","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.08734375","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1422","html-button-response","220","2.1.0","832788","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.08734375","0.08734375","1","0","14","0.02109375","52"
+"","","html-keyboard-response","221","2.1.0","833991","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","2","","","","","","","","","",""
+"","null","html-keyboard-response","222","2.1.0","834493","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","223","2.1.0","835494","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.08734375","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1049","html-button-response","224","2.1.0","836543","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.08734375","0.10843749999999999","0","0","15","0.02109375","53"
+"","","html-keyboard-response","225","2.1.0","837438","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","4","","","","","","","","","",""
+"","null","html-keyboard-response","226","2.1.0","837941","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","227","2.1.0","838942","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10843749999999999","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","820","html-button-response","228","2.1.0","839763","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","1","1","1","true","0.10843749999999999","0.10843749999999999","1","0","15","0.02109375","54"
+"","","html-keyboard-response","229","2.1.0","842362","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","230","2.1.0","842863","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","231","2.1.0","843867","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10843749999999999","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","1299","html-button-response","232","2.1.0","845167","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","1","-1","false","0.10843749999999999","0.12953125","0","0","15","0.02109375","55"
+"","","html-keyboard-response","233","2.1.0","853676","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","3","","","","","","","","","",""
+"","null","html-keyboard-response","234","2.1.0","854177","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","235","2.1.0","855178","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12953125","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","523","html-button-response","236","2.1.0","855702","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12953125","0.12953125","1","0","15","0.02109375","56"
+"","","html-keyboard-response","237","2.1.0","856533","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","238","2.1.0","857034","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","239","2.1.0","858038","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.12953125","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","531","html-button-response","240","2.1.0","858570","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.12953125","0.10843749999999999","0","0","16","0.015820312500000003","57"
+"","","html-keyboard-response","241","2.1.0","859559","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""
+"","null","html-keyboard-response","242","2.1.0","860061","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","","","","null","","","","","","","","","",""
+"","null","html-keyboard-response","243","2.1.0","861066","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","stimuli","0.10843749999999999","
+        <div style=""display: flex; flex-direction: column; justify-content: center; align-items: center; "">
+            <!-- RDM Box -->
+            <div id=""rdm-container"" 
+                 style=""width: 500px; height: 500px; border: 1px solid black; background-color: #f0f0f0; position: relative;"">
+                
+                <p style=""text-align: center; font-size: 25px; margin-top: 80px;"">
+                    Watch the bees
+                </p>
+                
+                <div id=""rdm-area"" 
+                     style=""width: 100%; height: 400px; position: absolute; bottom: 0;"">
+                </div>
+            </div>
+
+            <!-- Bottom instruction outside the box -->
+            
+        </div>
+    ","null","","","","","","","","","",""
+"","750","html-button-response","244","2.1.0","861816","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","rdm_decision","","<p>Which direction did the bees move?</p>","0","-1","-1","true","0.10843749999999999","0.10843749999999999","1","0","16","0.015820312500000003","58"
+"","","html-keyboard-response","245","2.1.0","862624","fv0jmanny7kd0lf","","","","","","","","","","","","","","","","","main_task","","local_confidence","","","5","","","","","","","","","",""

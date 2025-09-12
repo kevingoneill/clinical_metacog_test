@@ -39,9 +39,6 @@ function startRDM(set_coherence = coherence, set_direction = null) {
     const DotSpeed = RDM_DotSpeed;
     const centerX = container.offsetWidth / 2;
     const centerY = container.offsetHeight / 2;
-
-    current_correct_direction = direction === Math.PI ? -1 : 1; 
-    current_coherence_level = current_coherence;
     
     container.innerHTML = ''; // clear previous content
     

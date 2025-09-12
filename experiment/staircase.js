@@ -1,5 +1,4 @@
 function staircaseEvaluator(correct) {
-    trial_count++; // increment trial count **** need to make sure this is called only once per trial ****
     var direction_changed = false; // flag to track if direction changed
     
     if (correct) {
@@ -13,7 +12,7 @@ function staircaseEvaluator(correct) {
             // if the previous direction was getting easier (= -1), record a reversal
             if (previous_direction === -1) {
                 reversals.push({
-                    trial: trial_count,
+                    //trial: trial_count,
                     coherence: coherence,
                     step_size: step_size
                 });
@@ -36,7 +35,7 @@ function staircaseEvaluator(correct) {
             // if the previous direction was getting harder (= 1), record a reversal
             if (previous_direction === 1) {
                 reversals.push({
-                    trial: trial_count,
+                    //trial: trial_count,
                     coherence: coherence,
                     step_size: step_size
                 });
@@ -73,7 +72,6 @@ function staircaseEvaluator(correct) {
     
     return {
         coherence: coherence,
-        converged: reversals.length >= 6, // consider converged after 6 reversals
         reversals: reversals.length,
         step_size: step_size
     };
