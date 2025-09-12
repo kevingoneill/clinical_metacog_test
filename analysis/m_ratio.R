@@ -4,7 +4,7 @@ library(tidyr)
 library(tibble)
 #library(rstan)   # commented out because rstan is not actually available for webR
 
-FILENAME <- '../data/pilot/experiment_data.csv'
+FILENAME <- '../data/pilot/experiment_data_278uukb3csxw25k.csv'
 
 #' standata(file, K):
 #'   preprocess the data, focusing on main_task trials
@@ -84,6 +84,32 @@ m_ratio <- function(file, K=5,
 #m_ratio_cmdstanr(FILENAME)
 
 
+m_ratio(FILENAME, iter=2250, warmup=250)
+
+sm <- stan_model('metad_test.stan', save_dso=FALSE)
+
+fit <- sampling(sm, data=list(N=20,
+                              counts=c(0, 3, 3, 5, 2,
+                                       0, 0, 1, 2, 19,
+                                       0, 1, 0, 0, 0,
+                                       0, 1, 6, 6, 1),
+                              K=5,
+                              prior_sd_d_prime=.5,
+                              prior_sd_c=.5,
+                              prior_sd_log_M=.25,
+                              prior_mean_meta_c2=-1,
+                              prior_sd_meta_c2=1,
+                              prior_only=FALSE))
 
 
+library(jsonlite)
 
+standata(FILENAME) %>% toJSON() %>% prettify() %>%
+    write(file='../data/pilot/experiment_data.json')
+
+
+library(tinystan)
+
+m <- tinystan_model('metad_test.stan')
+
+sampler(m, data='../data/pilot/test.json')

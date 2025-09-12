@@ -50,7 +50,7 @@ var browser_check = {
 //preload images
 var preload = {
     type: jsPsychPreload,
-    images: [backgroundImage, dotImage]//defined in RandomBeeMotion.js
+    images: [backgroundImage, dotImage] //defined in RandomBeeMotion.js
 };
 
 var instruction_1 = {
@@ -70,8 +70,8 @@ var instruction_1 = {
 var example_stimuli = {
     type: jsPsychHtmlButtonResponse,
     // create a container for the RDM
-    stimulus: function() {
-        return createRDMContainer(RDM_box_width, RDM_box_height, 
+    stimulus: function () {
+        return createRDMContainer(RDM_box_width, RDM_box_height,
             "The waggle dance looks like this",
             "💡 The movement looks messy, but if you look closely, the majority is moving to one direction."
         );
@@ -81,12 +81,12 @@ var example_stimuli = {
     // store metadata
     data: {
         task: 'example_stimuli',
-        coherence: function() {
+        coherence: function () {
             return coherence; // example coherence level for demonstration
         }
     },
     // start the RDM animation
-    on_load: function() {
+    on_load: function () {
         startRDM(example_coherence, example_direction);// use fixed coherence and direction (right) for the example
     }
 };
@@ -137,21 +137,18 @@ var iti = {
 // stimuli used in practice and main trials
 var stimuli = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function() {
-        return createRDMContainer(RDM_box_width, RDM_box_height, "Watch the bees");
-
-    },
+    stimulus: () => createRDMContainer(RDM_box_width, RDM_box_height, "Watch the bees"),
     choices: "NO_KEYS",
     trial_duration: RDM_duration, // duration of the RDM animation, set in RandomBeeMotion.js
     data: {
         task: 'stimuli'
     },
-    on_load: function() {
+    on_load: function () {
         // dynamically set the RDM direction
         let direction_rad = jsPsych.evaluateTimelineVariable('direction') == 'left' ? Math.PI : 0;
-        startRDM(coherence, set_direction=direction_rad);
+        startRDM(coherence, set_direction = direction_rad);
     },
-    on_finish: function(data) {
+    on_finish: function (data) {
         // store currect coherence
         data.current_coherence = coherence;
         console.log(`Stimulus shown with direction: ${data.direction}, coherence: ${data.current_coherence}`);
@@ -165,44 +162,34 @@ var rdm_decision = {
     data: {
         task: 'rdm_decision',
     },
-    on_finish: function(data) {
+    on_finish: function (data) {
 
         // store current coherence
-        data.current_coherence = coherence; 
+        data.current_coherence = coherence;
 
         //store correctness
-        if (data.response === 0) {
-            data.response = 'left'; // 0 for left
-        } else if (data.response === 1) {
-            data.response = 'right'; // 1 for right
-        }
-        var correct = (data.response === data.direction);
-        data.correct = correct;
+        data.response = data.response ? 'right' : 'left';
+        data.correct = (data.response === data.direction) ? 1 : 0;
 
-        console.log(`Trial ${data.trial} (${data.phase}): Coherence=${coherence.toFixed(3)}, Correct=${correct}, Reversals=${reversals.length}`);
+        console.log(`Trial ${data.trial} (${data.phase}): Coherence=${coherence.toFixed(3)}, Correct=${data.correct}, Reversals=${reversals.length}`);
 
         // apply staircase rule, update coherence and step size
-        staircaseEvaluator(correct);
+        staircaseEvaluator(data.correct);
 
         // store updated staircase data
-        data.next_coherence = coherence; 
+        data.next_coherence = coherence;
         data.staircase_up = stairCaseUp;
         data.staircase_down = stairCaseDown;
         data.reversals = reversals.length;
         data.step_size = step_size;
-        //data.trial_number = trial_count;
-
     }
 };
 
 var feedback = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function() {
-        // get last trial correctness
-        var last_trial = jsPsych.data.get().last(1).values()[0];
-        var correct = last_trial.correct;
+    stimulus: function () {
         // show feedback based on correctness
-        if (correct) {
+        if (jsPsych.data.get().last(1).values()[0].correct) {
             return '<p style="color: green; font-size: 24px;">Correct!</p>';
         } else {
             return '<p style="color: red; font-size: 24px;">Incorrect</p>';
@@ -227,20 +214,19 @@ var instruction_4 = {
 
 var example_confidence_rt = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function() {
-        return createConfidenceStimulus(
-            "<p>A rating scale as shown below is used throughout the task. <p>If you are <strong>more confident</strong> that your judgment was correct, click more on the <strong>RIGHT</strong> of the scale; </p><p>if you are <strong>less confident</strong>, click more on the <strong>LEFT</strong>.</p>  <p>Please do your best to rate your confidence accurately and do take advantage of the whole rating scale.</p><p>Now, click on any point and press continue to proceed.</p>",
-            5,
-            ['Not sure at all', 'A little sure', 'Somewhat sure', 'Very sure', 'Extremely sure']//change the labels
-        );
-    },
+    stimulus:
+        createConfidenceStimulus(
+            `<p>A rating scale as shown below is used throughout the task.</p>
+            <p>If you are <strong>more confident</strong> that your judgment was correct, click more on the <strong>RIGHT</strong> of the scale;</p>
+            <p>if you are <strong>less confident</strong>, click more on the <strong>LEFT</strong>.</p>
+            <p>Please do your best to rate your confidence accurately and do take advantage of the whole rating scale.</p>
+            <p>Now, click on any point and press continue to proceed.</p>`),
     choices: "NO_KEYS",
     data: {
         task: 'example_confidence_rt'
     },
-    on_finish: function(data) {
+    on_finish: function (data) {
         data.response = parseInt(data.response);
-        console.log(`Confidence selected: ${data.response}`);
     }
 };
 var instruction_5 = {
@@ -258,22 +244,21 @@ var instruction_5 = {
 
 var confidence_rt = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function() {
-        return createConfidenceStimulus(
-            "How confident are you in your judgment?",
-            5,
-            ['Not sure at all', 'A little sure', 'Somewhat sure', 'Very sure', 'Extremely sure']//change the labels
-        );
+    stimulus: function () {
+        return createConfidenceStimulus("How confident are you in your judgment?");
     },
     choices: "NO_KEYS",
     data: {
         task: 'local_confidence'
     },
-    on_finish: function(data) {
+    on_finish: function (data) {
         data.current_coherence = jsPsych.data.get().last(2).values()[0].current_coherence; // get current coherence
         data.correct = jsPsych.data.get().last(2).values()[0].correct; // get last trial correctness
         data.response = parseInt(data.response);
         console.log(`Confidence selected: ${data.response}`);
+
+        // add confidence data to the previous trial
+        jsPsych.data.get().last(2).values()[0].confidence = data.response;
     }
 };
 /*
@@ -319,25 +304,25 @@ var instruction_6 = {
 var decision_practice = {
     timeline: [iti, stimuli, rdm_decision, feedback],
     timeline_variables: decision_practice_variables,
-    data: function() {
+    data: function () {
         return {
-          phase: 'decision_practice',
-          direction: jsPsych.evaluateTimelineVariable('direction'),
-          trial: jsPsych.evaluateTimelineVariable('trial'),
+            phase: 'decision_practice',
+            direction: jsPsych.evaluateTimelineVariable('direction'),
+            trial: jsPsych.evaluateTimelineVariable('trial'),
         };
-      }
+    }
 };
 
 var confidence_practice = {
     timeline: [iti, stimuli, rdm_decision, confidence_rt],
     timeline_variables: confidence_practice_variables,
-    data: function() {
+    data: function () {
         return {
-          phase: 'confidence_practice',
-          direction: jsPsych.evaluateTimelineVariable('direction'),
-          trial: jsPsych.evaluateTimelineVariable('trial'),
+            phase: 'confidence_practice',
+            direction: jsPsych.evaluateTimelineVariable('direction'),
+            trial: jsPsych.evaluateTimelineVariable('trial'),
         };
-      }
+    }
 };
 
 var instructions = {
@@ -351,7 +336,7 @@ var main_task = {
             {
                 timeline: [iti, stimuli, rdm_decision, confidence_rt],
                 timeline_variables: block_vars,
-                data: function() {
+                data: function () {
                     return {
                         phase: 'main_task',
                         direction: jsPsych.evaluateTimelineVariable('direction'),
@@ -366,9 +351,9 @@ var main_task = {
         if (i < main_task_block_variables.length - 1) {
             block_timeline.push({
                 type: jsPsychHtmlButtonResponse,
-                stimulus: '<p>Great job so far!</p><p>You have completed '+(i+1)+' out of '+n_block+' blocks.</p><p>You can now pause for a short break.</p><p>Click on the button below to continue the task.</p>',
+                stimulus: '<p>Great job so far!</p><p>You have completed ' + (i + 1) + ' out of ' + n_block + ' blocks.</p><p>You can now pause for a short break.</p><p>Click on the button below to continue the task.</p>',
                 choices: ['🐝 Continue'],
-                trial_duration: null, 
+                trial_duration: null,
                 data: { phase: 'inter_block_break' }
             });
         } else {
@@ -377,7 +362,7 @@ var main_task = {
                 type: jsPsychHtmlButtonResponse,
                 stimulus: '<p>You have completed all blocks of the main task!</p><p>Click on the button below to proceed to the final questions.</p>',
                 choices: ['Continue'],
-                trial_duration: null, 
+                trial_duration: null,
                 data: { phase: 'end_of_main_task' }
             });
         }
@@ -386,25 +371,20 @@ var main_task = {
     })
 };
 
-  
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //                         Post-experiment questions
 ///////////////////////////////////////////////////////////////////////////////
-var global_confidnece = {
+var global_confidence = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: function() {
-        return createConfidenceStimulus(
-            "<p>Overall, how confident are you that you performed well on this task?</p>",
-            5,
-            ['Not sure at all', 'A little sure', 'Somewhat sure', 'Very sure', 'Extremely sure']//change the labels
-        );
-    },
+    stimulus: createConfidenceStimulus(
+        "<p>Overall, how confident are you that you performed well on this task?</p>"),
     choices: "NO_KEYS",
     data: {
         task: 'global_confidence'
     },
-    on_finish: function(data) {
+    on_finish: function (data) {
         data.response = parseInt(data.response);
         console.log(`Confidence selected: ${data.response}`);
     }
