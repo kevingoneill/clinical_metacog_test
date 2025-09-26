@@ -1,6 +1,7 @@
 // generate a sequence from start to stop
-function seq(start = 1, stop = 1) {
-    return [...Array(stop - start + 1).keys()].map(x => start + x);
+function seq(start = 1, stop = 1, by=1) {
+    let n = Math.floor((stop - start) / by) + 1;
+    return new Array(n).fill().map((_, i) => start + by * i);
 }
 
 // enter/exit fullscreen mode
