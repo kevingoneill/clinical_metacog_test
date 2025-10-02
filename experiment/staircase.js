@@ -1,4 +1,4 @@
-function staircaseEvaluator(correct) {
+function staircaseEvaluator(correct,task='rdm') {
     var direction_changed = false; // flag to track if direction changed
 
     if (correct) {
@@ -12,13 +12,16 @@ function staircaseEvaluator(correct) {
             // if the previous direction was getting easier (= -1), record a reversal
             if (previous_direction === -1) {
                 reversals.push({
-                    coherence: coherence,
+                    //coherence: coherence,
                     step_size: step_size
                 });
                 direction_changed = true;
             }
-
-            coherence = Math.max(coherence - step_size, min_coherence);
+            if (task==='rdm'){
+                coherence = Math.max(coherence - step_size, min_coherence);
+            } else if (task==='wm'){
+                set_size = Math.min(set_size + 1, max_set_size);
+            }
             stairCaseUp = 0;
             previous_direction = new_direction;
         }
@@ -33,13 +36,16 @@ function staircaseEvaluator(correct) {
             // if the previous direction was getting harder (= 1), record a reversal
             if (previous_direction === 1) {
                 reversals.push({
-                    coherence: coherence,
+                    //coherence: coherence,
                     step_size: step_size
                 });
                 direction_changed = true;
             }
-
-            coherence = Math.min(coherence + step_size, max_coherence);
+            if (task==='rdm'){
+                coherence = Math.min(coherence + step_size, max_coherence);
+            } else if (task==='wm'){
+                set_size = Math.max(set_size - 1, min_set_size);
+            }
             stairCaseDown = 0;
             previous_direction = new_direction;
         }
@@ -53,7 +59,7 @@ function staircaseEvaluator(correct) {
     }
 
     return {
-        coherence: coherence,
+        //coherence: coherence,
         reversals: reversals.length,
         step_size: step_size
     };

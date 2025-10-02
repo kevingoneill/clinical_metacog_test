@@ -1,4 +1,4 @@
-function createRDMContainer(width, height, mainText, bottomText = '') {
+function createContainer(width, height, mainText, bottomText = '') {
     return `
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
             <div id="rdm-container" style="width: ${width}px; height: ${height}px; 

@@ -64,8 +64,8 @@ function drawPetal(center, angle, radius, scale_x, scale_y, shape = 'triangle', 
  *    radius: relative radius of the petals
  *    background_color: background color of the SVG image
  */
-function drawFlower(n_petals = 5, shape = 'triangle', center_color = 'black', petal_color = 'black',
-    layered = false, n_leaves = 0, angle = 0, size = 250, radius = .4, background_color = 'hsl(200, 50%, 95%)') {
+function drawFlower({n_petals = 5, shape = 'triangle', center_color = 'black', petal_color = 'black',
+    layered = false, n_leaves = 0, angle = 0, size = 250, radius = .4, background_color = 'hsla(0, 0%, 100%, 0)'}) {
     // start an svg image
     let svg = `<svg id="img" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg" 
                         style="background-color: ${background_color};">`;
@@ -112,3 +112,37 @@ function drawFlower(n_petals = 5, shape = 'triangle', center_color = 'black', pe
     svg += `<ellipse cx="${size}" cy="${size}" rx="${2 / 3 * radius * size}" ry="${2 / 3 * radius * size}" fill="${center_color}" />`;
     return svg + '</g></svg>';
 }
+function generateFlowerParams() {
+    const shape = jsPsych.randomization.sampleWithReplacement(PETAL_SHAPES, 1)[0];
+    const n_petals = jsPsych.randomization.sampleWithReplacement(N_PETALS, 1)[0];
+    const n_leaves = jsPsych.randomization.sampleWithReplacement(N_LEAVES, 1)[0];
+    const petal_color = jsPsych.randomization.sampleWithReplacement(PETAL_COLORS, 1)[0].color;
+    const center_color = jsPsych.randomization.sampleWithReplacement(CENTER_COLORS, 1)[0].color;
+    const layered = Math.random() > .5;
+    const angle = Math.round(Math.random() * 360);
+    return {
+        n_petals: n_petals,
+        shape: shape,
+        center_color: center_color,
+        petal_color: petal_color,
+        layered: layered,
+        n_leaves: n_leaves,
+        angle: angle,
+        size: WM_stimuli_size,
+        radius: .4,
+    };
+};
+/*
+return drawFlower(
+        n_petals,
+        shape,
+        center_color,
+        petal_color,
+        layered,
+        n_leaves,
+        angle,
+        size = WM_stimuli_size,
+        radius = .4,
+        background_color = 'hsla(0, 0%, 100%, 1.00)'
+        );
+*/

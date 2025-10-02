@@ -17,16 +17,47 @@
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@2.0.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@2.1.0"></script>
     <script src="https://unpkg.com/mathjs@14.7.0"></script>
 
     <script src="RandomBeeMotion.js"></script>
     <script src="ConfidenceRating.js"></script>
     <script src="staircase.js"></script>
     <script src="utilities.js"></script>
+    <script src="flowers.js"></script>
 
-    <style>
-        /* insert CSS styling here */
-    </style>
+<style>
+    /* Full-screen background image with opacity */
+    /*
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        position: relative;
+    }
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('img/bg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+        z-index: -1;
+    }
+    
+    
+    #jspsych-target {
+        position: relative;
+        z-index: 1;
+    }
+    */
+</style>
 </head>
 
 <body>
@@ -42,12 +73,13 @@
         var confidence_labels = ['Guess', '', '', '', 'Confident'];
 
         // trial numbers
-        var n_decision_practice = 5; // number of decision trials for practice
-        var n_confidence_practice = 3; // number of confidence trials for practice
+        var n_decision_practice = 1; // number of decision trials for practice
+        var n_confidence_practice = 1; // number of confidence trials for practice
         var n_block = 2; // number of blocks in the main task
-        var n_per_block = 10;
+        var n_per_block = 2;
         var n_main = n_block * n_per_block; // number of main trials
 
+        
         // basic RDM parameters
         var RDM_DotSpeed = 2;
         var RDM_numDots = 100;
@@ -82,6 +114,21 @@
         var previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
 
         var results_precision = 3;  // the number of digits to print SDT stats
+        
+        // basic WM parameters
+        WM_duration = 2000; // duration of WM stimulus
+        post_stimulus_gap = 500; // gap (ms) between WM stimulus and response screen
+        var wm_stimuli_params = [];
+
+        // WM dimensions
+        var WM_box_width = 800;
+        var WM_box_height = 500;
+        var WM_stimuli_size = 150;
+        // WM staircase parameters
+        var set_size= 2; // starting set size
+        var max_set_size = 6; // maximum set size
+        var min_set_size = 2; // minimum set size
+        var step_size_WM = 1; // initial step size
 
         ///////////////////////////////////////////////////////////////////////////////
         //                          Initialize jsPsych/JATOS
@@ -152,18 +199,20 @@
         ///////////////////////////////////////////////////////////////////////////////
         function createTaskVariables(n) {
             return jsPsych.randomization.shuffle(seq(1, n).map(i => ({
-                // pseudo-randomly assign RDM direction
-                direction: i < n / 2 ? 'left' : 'right'
+                // pseudo-randomly assign target side
+                target: i < n / 2 ? 'left' : 'right'
             }))
             ).map((o, i) => {
                 o.trial = i + 1; // assign trial number after shuffling
                 return o;
             });
         }
-
-        var decision_practice_variables = createTaskVariables(n_decision_practice);
-        var confidence_practice_variables = createTaskVariables(n_confidence_practice);
-        var main_task_variables = createTaskVariables(n_main);
+        var rdm_decision_practice_variables = createTaskVariables(n_decision_practice);
+        var rdm_confidence_practice_variables = createTaskVariables(n_confidence_practice);
+        var rdm_main_task_variables = createTaskVariables(n_main);
+        var wm_decision_practice_variables = createTaskVariables(n_decision_practice);
+        var wm_confidence_practice_variables = createTaskVariables(n_confidence_practice);
+        var wm_main_task_variables = createTaskVariables(n_main);
 
         function splitIntoBlocks(variables, n_block) {
             const blocks = [];
@@ -179,8 +228,13 @@
             return blocks;
         }
 
-        var main_task_block_variables = splitIntoBlocks(main_task_variables, n_block);
+        var rdm_main_task_block_variables = splitIntoBlocks(rdm_main_task_variables, n_block);
+        var wm_main_task_block_variables = splitIntoBlocks(wm_main_task_variables, n_block);
+        
+        // Define task selection and order 
+        var task_seq = jsPsych.randomization.shuffle(['rdm','wm']);//'rdm', 'wm'
 
+        // create experiment timeline
         ///////////////////////////////////////////////////////////////////////////////
         //                     Randomize participant-level data
         ///////////////////////////////////////////////////////////////////////////////
@@ -194,14 +248,14 @@
         ///////////////////////////////////////////////////////////////////////////////
         //                         Launch experiment
         ///////////////////////////////////////////////////////////////////////////////
+        //var timeline = [];
         var run = function() {
             jsPsych.run([
                 //fullscreen(true), 
-                preload,
+                //preload,
                 //browser_check, information, consent,
-                //instructions, 
-                main_task, // main task procedure
-                global_confidence
+                general_instructions,
+                experiment
                 //fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
             ]);
         }
