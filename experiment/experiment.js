@@ -44,16 +44,7 @@ var browser_check = {
     }
 };
 
-var general_instructions = {
-    type: jsPsychInstructions,
-    pages: [
-        `<h2>Welcome to the experiment!🐝🌹</h2>
-        <p>In this experiment, you will complete <strong>${task_seq.length} ${task_seq.length === 1 ? 'task.' : 'tasks.'}</strong></p>
-        <p>Please pay attention to the instructions and do your best.</p>`
-    ],
-    allow_backward: false,
-    show_clickable_nav: true
-};
+
 ///////////////////////////////////////////////////////////////////////////////
 //                                Shared components
 ///////////////////////////////////////////////////////////////////////////////
@@ -132,9 +123,9 @@ var global_confidence = {
     type: jsPsychHtmlSliderResponse,
     stimulus: `
         <p>In this task, what percentage of trials do you think you got correct?</p>
-        <p>(Use the slider to choose between 0% and 100%)</p>
+        <p>(Click on the slider to choose between 0% and 100%)</p>
     `,
-    labels: ['0%', '100%'],
+    labels: seq(0, 100, by=10).map(d => `${d}%`),
     min: 0,
     max: 100,
     step: 1,
@@ -143,8 +134,15 @@ var global_confidence = {
     data: {
         type: 'global_confidence'
     },
+    // Hide the slider thumb until response
+    on_load: function () {
+        document.getElementById('jspsych-html-slider-response-response').classList.add('hidden');
+        document.getElementById('jspsych-html-slider-response-response')
+	    .addEventListener('click', function (e) {
+		e.target.classList.remove('hidden');
+            });
+    },
     on_finish: function(data) {
-        data.response = data.response;
         console.log(`Estimated accuracy: ${data.response}%`);
     }
 };
@@ -205,17 +203,28 @@ var example_rdm_stimuli = {
     },
     // start the RDM animation
     on_load: function () {
-        startRDM(example_coherence, example_direction);// use fixed coherence and direction (right) for the example
+        startRDM(example_coherence, example_direction);// use fixed coherence and direction (left) for the example
     }
 };
 
 var example_rdm_decision = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `<p>During the task, click on the <strong>LEFT</strong> button if you think more bees are moving left, or the <strong>RIGHT</strong> button if you think more bees are moving right.</p><p>Now, click on any button to proceed.</p>`,
-    choices: ['Left', 'Right'],
-    data: {
-        type: 'example_rdm_decision',
-    },
+    timeline: [{
+	type: jsPsychHtmlButtonResponse,
+	stimulus: `<p>During the task, click on the <strong>LEFT</strong> button if you think more bees are moving left, or the <strong>RIGHT</strong> button if you think more bees are moving right.</p>
+<p>On the last page, the stimulus was moving left.</p><p><b>So, please click on the left button to proceed.</b></p>`,
+	choices: ['Left', 'Right'],
+	data: {
+            type: 'example_rdm_decision',
+	},
+    }],
+    loop_function: function(data) {
+	let clicked_right = data.values()[0].response == 1;
+
+	if (clicked_right)
+	    alert("You've clicked on the button on the right! Please click on the button on the left to proceed.");
+	
+	return clicked_right;
+    }
 };
 
 var rdm_stimuli = {
@@ -318,7 +327,7 @@ var example_wm_stimuli = {
         flowers.push(drawFlower({n_petals: 4, shape: 'rect', center_color: '#19180A', petal_color: '#BBA1BE', layered: false, n_leaves: 2, angle: 200, size: WM_stimuli_size}));
 
         let flowersHTML = flowers.map(flower => 
-            `<div class="img" width="${WM_stimuli_size}" height="${WM_stimuli_size}" style="display: inline-block;">${flower}</div>`
+	    `<div class="img" width="${WM_stimuli_size}" height="${WM_stimuli_size}" style="display: inline-block;">${flower}</div>`
         ).join('');
         
         return `
@@ -333,23 +342,35 @@ var example_wm_stimuli = {
     data: {
         type: 'example_wm_stimuli'
     }
-};
+}
+
+
 
 var example_wm_decision = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: '<p>During the task, click on the flower that has been just shown to you.</p><p>In the previous example, you\'ve seen the flower on the left but not the one on the right.</p><p>In this case, you should click on the flower on the left.</p><p>Now, click on the flower on the left to proceed.</p>',
-    choices: function() {
-        let flowers = [];
-        flowers.push(drawFlower({n_petals: 6, shape: 'oval', center_color: '#4B2F3E', petal_color: '#FFD30D',layered: true, n_leaves: 0, angle: 100, size: WM_stimuli_size}));
-        flowers.push(drawFlower({n_petals: 4, shape: 'heart', center_color: '#19180A', petal_color: '#E96047', layered: true, n_leaves: 1, angle: 200, size: WM_stimuli_size}));
+    timeline: [{
+	type: jsPsychHtmlButtonResponse,
+	stimulus: '<p>During the task, click on the flower that has been just shown to you.</p><p>In the previous example, you\'ve seen the flower on the left but not the one on the right.</p><p>In this case, you should click on the flower on the left.</p><p>Now, click on the flower on the left to proceed.</p>',
+	choices: function() {
+            let flowers = [];
+            flowers.push(drawFlower({n_petals: 6, shape: 'oval', center_color: '#4B2F3E', petal_color: '#FFD30D',layered: true, n_leaves: 0, angle: 100, size: WM_stimuli_size}));
+            flowers.push(drawFlower({n_petals: 4, shape: 'heart', center_color: '#19180A', petal_color: '#E96047', layered: true, n_leaves: 1, angle: 200, size: WM_stimuli_size}));
 
-        return flowers.map(flower => 
-            `<div class="img" style="display:inline-block; cursor:pointer;" width="${WM_stimuli_size}" height="${WM_stimuli_size}">${flower}</div>`
-        );
-    },
-    data: {
-        type: 'example_wm_decision'
-    },
+            return flowers.map(flower => 
+		`<div class="img" style="display:inline-block; cursor:pointer;" width="${WM_stimuli_size}" height="${WM_stimuli_size}">${flower}</div>`
+            );
+	},
+	data: {
+            type: 'example_wm_decision'
+	},
+    }],
+    loop_function: function(data) {
+	let clicked_right = data.values()[0].response == 1;
+
+	if (clicked_right)
+	    alert("You've clicked on the flower on the right! Please click on the flower on the left to proceed.");
+	
+	return clicked_right;
+    }
 };
 
 var wm_stimuli = {
@@ -417,7 +438,7 @@ var wm_decision = {
         );
     },
     data: {
-        typef: 'wm_decision',
+        type: 'wm_decision',
     },
     on_finish: function (data) {
         data.current_set_size = set_size;
@@ -439,19 +460,6 @@ var wm_decision = {
 ///////////////////////////////////////////////////////////////////////////////
 //                      Building the experimental timeline
 ///////////////////////////////////////////////////////////////////////////////
-// build instructions
-function instructions(pages, emoji) {
-    return pages.map((p, i) => {
-        return {
-            type: jsPsychInstructions,
-            show_clickable_nav: true,
-            show_page_number: false,
-            pages: p,
-            allow_backward: false,
-            button_label_next: (i == p.length-1) ? (emoji + ' Start!') : 'Next'
-        }
-    })
-}
 function decision_practice(decision_practice_variables, stimulus, decision) {
     return {
         timeline: [iti, stimulus, decision, feedback],
@@ -488,11 +496,22 @@ function task_instructions(pages, example_stimuli, example_decision, decision_pr
     if (pages.length != 6)
         throw('Must have six pages of instructions.');
 
-    let i = instructions(pages, emoji);
+    let instructions = pages.map((p, i) => {
+        return {
+            type: jsPsychInstructions,
+            show_clickable_nav: true,
+            show_page_number: false,
+            pages: p,
+            allow_backward: false,
+            button_label_next: (i == p.length-1) ? (emoji + ' Start!') : 'Next'
+        }
+    });
 
     return {
-        timeline: [i[0], example_stimuli, i[1], example_decision, i[2],
-            decision_practice, i[3], example_confidence_rt, i[4], confidence_practice, i[5]]
+        timeline: [instructions[0], example_stimuli, instructions[1],
+		   example_decision, instructions[2], decision_practice,
+		   instructions[3], example_confidence_rt, instructions[4],
+		   confidence_practice, instructions[5]]
     };
 }
 var rdm_instructions = task_instructions(rdm_pages, example_rdm_stimuli, example_rdm_decision, rdm_decision_practice, rdm_confidence_practice, '🐝');
@@ -546,22 +565,28 @@ function main_task(block_variables, stimulus, decision, emoji) {
 var rdm_main_task = main_task(rdm_main_task_block_variables, rdm_stimuli, rdm_decision, '🐝');
 var wm_main_task = main_task(wm_main_task_block_variables, wm_stimuli, wm_decision, '🌹');
 
-//create task info summary based on task_seq
-var tasks = task_seq.map(task => {
-    if (task === 'rdm') {
-        return {
-            name: 'rdm',
-            emoji: '🐝',
-            timeline: [rdm_instructions, rdm_main_task, global_confidence]
-        };
-    } else if (task === 'wm') {
-        return {
-            name: 'wm',
-            emoji: '🌹',
-            timeline: [wm_instructions, wm_main_task, global_confidence]
-        };
-    }
-});
+// summarize task info & order
+var tasks = jsPsych.randomization.shuffle([{
+    name: 'rdm',
+    emoji: '🐝',
+    timeline: [rdm_instructions, rdm_main_task, global_confidence]
+}, {
+    name: 'wm',
+    emoji: '🌹',
+    timeline: [wm_instructions, wm_main_task, global_confidence]
+}]);
+
+var general_instructions = {
+    type: jsPsychInstructions,
+    pages: [
+        `<h2>Welcome to the experiment!🐝🌹</h2>
+        <p>In this experiment, you will complete <strong>${tasks.length} ${tasks.length === 1 ? 'task.' : 'tasks.'}</strong></p>
+        <p>Please pay attention to the instructions and do your best.</p>`
+    ],
+    allow_backward: false,
+    show_clickable_nav: true
+};
+
 // build the entire experiment
 var experiment = {
     timeline: tasks.flatMap((task, i) => {
@@ -571,6 +596,11 @@ var experiment = {
             stimulus: `<p>You are about to begin <strong>Task ${i + 1}</strong></p>
                       `,
             choices: ['Start Task'],
+	    on_load: function() {
+		// reset staircasing variables
+		reversals = []; // track all reversal points
+		previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
+	    },
             data: {phase: 'task_intro', task: task.name}
         };
 
@@ -580,11 +610,7 @@ var experiment = {
         };
 
         let experiment_timeline = [task_intro, task_timeline];
-
-        // reset staircasing variables
-        reversals = []; // track all reversal points
-        previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
-        
+	
         // add inter-task break unless it's the last task
         if (i < tasks.length - 1) {
             experiment_timeline.push({
@@ -600,6 +626,7 @@ var experiment = {
         return experiment_timeline;
     })
 };
+
 ///////////////////////////////////////////////////////////////////////////////
 //                         Post-experiment questions
 ///////////////////////////////////////////////////////////////////////////////

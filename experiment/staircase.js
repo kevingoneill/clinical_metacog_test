@@ -1,4 +1,4 @@
-function staircaseEvaluator(correct,task='rdm') {
+function staircaseEvaluator(correct, task='rdm') {
     var direction_changed = false; // flag to track if direction changed
 
     if (correct) {

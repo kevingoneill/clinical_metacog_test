@@ -26,9 +26,18 @@
     <script src="utilities.js"></script>
     <script src="flowers.js"></script>
 
-<style>
-    /* Full-screen background image with opacity */
-    /*
+    <style>
+      /* use hidden class to hide slider thumb */
+      .jspsych-slider.hidden::-webkit-slider-thumb {
+          visibility: hidden;
+      }
+
+      .jspsych-slider.hidden::-moz-range-thumb {
+          visibility: hidden;
+      }
+      
+      /* Full-screen background image with opacity */
+      /*
     body {
         margin: 0;
         padding: 0;
@@ -56,8 +65,8 @@
         position: relative;
         z-index: 1;
     }
-    */
-</style>
+     */
+    </style>
 </head>
 
 <body>
@@ -76,7 +85,7 @@
         var n_decision_practice = 1; // number of decision trials for practice
         var n_confidence_practice = 1; // number of confidence trials for practice
         var n_block = 2; // number of blocks in the main task
-        var n_per_block = 2;
+        var n_per_block = 10;
         var n_main = n_block * n_per_block; // number of main trials
 
         
@@ -130,17 +139,17 @@
         var min_set_size = 2; // minimum set size
         var step_size_WM = 1; // initial step size
 
+        // Analysis parameters
+        const stan_params = ['d_prime', 'c', 'log_M'];
+        const n_chains = 4;
+        const n_samples = 1000;
+        const n_warmup = 250;
+
         ///////////////////////////////////////////////////////////////////////////////
         //                          Initialize jsPsych/JATOS
         ///////////////////////////////////////////////////////////////////////////////
         var JATOS = false;  // if true, load JATOS. use 'false' to run on a local server
-        if (JATOS) {
-            let script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'jatos.js';
-
-        }
-
+        
         // initialize jsPsych
         var jsPsych = initJsPsych({
             experiment_width: EXPERIMENT_WIDTH,
@@ -151,42 +160,55 @@
                 jsPsych.getDisplayElement().innerHTML = `
                     <div>
                         <p>Thanks for completing this experiment!</p>
+                        <div>
+                          Analyzing confidence data...<span id="done"></span><br>
+                          <span id="results"></span>
+                        </div>
+
                         <p>
-                            <button id="save" class="jspsych-btn" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
+                            <button id="save" class="jspsych-btn" style="display: none;" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
                                 Click here to download your data as a CSV file.
                             </button>
                         </p>
-                    </div>
-                    <br>
-                    <div>
-                        Analyzing confidence data...<span id="done"></span><br>
-                        <span id="results"></span>
-                    </div>
-                    `;
+                    </div>`;
 
                 // Analyze confidence data
-                import("./metad.js")
-                    .then(metad => metad.analyze({
-                        data: standata(),
-                        num_chains: 4,
-                        num_samples: 1000,
-                        num_warmup: 250,
-                    }))
+		Promise.all(tasks.map(t => t.name).map(async task => {
+		    return import("./metad.js")
+			.then(metad => metad.analyze({
+                            data: standata(task),
+                            num_chains: n_chains,
+                            num_samples: n_samples,
+                            num_warmup: n_warmup,
+			}))
                     // get posterior quantiles
-                    .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975]).map(x => x.toFixed(results_precision))))
+			.then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
                     // print to screen (TODO: maybe add jsPsych.addProperties()? )
-                    .then(draws => {
-                        ['d_prime', 'c', 'log_M'].forEach(param => {
-                            document.getElementById('results').innerHTML +=
-                                `<br><strong>${param}:</strong> ${draws[param][0]} [${draws[param][1]}, ${draws[param][2]}]`;
-                        });
-                        document.getElementById('done').innerHTML = 'done!';
-                    }).catch((err) => {
-                        // print errors to the screen
-                        document.getElementById('results').innerHTML = 
-                            '<br>There has been an error while analyzing the confidence data: ' + err;
-                    });
+			.then(draws => {
+			    document.getElementById('results').innerHTML +=
+				`<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
+				stan_params.map(param => 
+				    `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
+				'</table></div></div>';
+			    
+			    // save model estimates to javascript data
+			    let o = {};
+			    stan_params.forEach(param => {
+				o[param+'_'+task] = draws[param][0];
+			    })
+			    jsPsych.data.addProperties(o);
+			});
+		})).then(() => {
+		    document.getElementById('done').innerHTML = 'done!';
+		    document.getElementById('save').style.display= 'inline';
+		}).catch((err) => {
+                    // print errors to the screen
+                    document.getElementById('results').innerHTML = 
+			'<br>There has been an error while analyzing the confidence data:<br>' + err;
 
+		    document.getElementById('save').style.display= 'inline';
+		});
+                
                 // Use this to save data via JATOS
                 if (JATOS) {
                     jatos.endStudy(data.csv());
@@ -231,10 +253,6 @@
         var rdm_main_task_block_variables = splitIntoBlocks(rdm_main_task_variables, n_block);
         var wm_main_task_block_variables = splitIntoBlocks(wm_main_task_variables, n_block);
         
-        // Define task selection and order 
-        var task_seq = jsPsych.randomization.shuffle(['rdm','wm']);//'rdm', 'wm'
-
-        // create experiment timeline
         ///////////////////////////////////////////////////////////////////////////////
         //                     Randomize participant-level data
         ///////////////////////////////////////////////////////////////////////////////
@@ -248,21 +266,24 @@
         ///////////////////////////////////////////////////////////////////////////////
         //                         Launch experiment
         ///////////////////////////////////////////////////////////////////////////////
-        //var timeline = [];
         var run = function() {
             jsPsych.run([
-                //fullscreen(true), 
-                //preload,
-                //browser_check, information, consent,
+		fullscreen(true), 
+                preload,
+                browser_check, information, consent,
                 general_instructions,
                 experiment
-                //fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
+                fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
             ]);
         }
 
         // run jsPsych
         if (JATOS) {
-            jatos.onLoad(run);
+	    let script = document.createElement('script');
+            script.type = 'text/javascript';
+	    script.onload = () => { jatos.onLoad(run); };	  
+            script.src = 'jatos.js';
+	    document.head.appendChild(script);
         } else {
             run();
         }

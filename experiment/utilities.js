@@ -26,17 +26,17 @@ function zip(names, values) {
 
 // read the jsPsych data to compile the confidence data
 // returns a flattened array C[response, accuracy, confidence]
-function standata() {
+function standata(task='rdm_decision') {
     // initialize confidence counts to 0
     // C[response, correct, confidence]
     let C = Array.from(Array(2),
         () => Array.from(Array(2),
-            () => Array(5).fill(0)));
+            () => Array(confidence_levels).fill(0)));
 
     // gather all RDM decision trials
     // (assuming confidence is added as an attribute)
     jsPsych.data.get()
-        .filter({ phase: "main_task", task: "rdm_decision" })
+        .filter({ phase: "main_task", task: task, type: task+'_decision' })
         .values()
         .forEach(trial => {
             C[trial.response == 'right' ? 1 : 0][trial.correct][trial.confidence - 1]++;
@@ -57,4 +57,8 @@ function standata() {
 // apply func to every value of obj
 function objMap(obj, func) {
     return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, func(v)]));
+}
+
+function formatEstimate(x, precision=results_precision) {
+    return x.toFixed(precision).padStart(precision+4, ' ');
 }

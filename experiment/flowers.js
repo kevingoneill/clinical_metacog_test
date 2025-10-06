@@ -15,9 +15,12 @@ const CENTER_COLORS = [
     { color: '#4B2F3E', label: 'purple' }
 ]
 
+/*
 console.log('Number of possible flowers: ', 
     PETAL_SHAPES.length * N_PETALS.length * N_LEAVES.length * 
     PETAL_COLORS.length * CENTER_COLORS.length);
+*/
+
 
 /*
  * drawPetal():
