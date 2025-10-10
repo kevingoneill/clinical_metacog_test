@@ -86,7 +86,7 @@ var example_confidence_rt = {
             `<p>A rating scale as shown below is used throughout the task.</p>
             <p>If you are <strong>more confident</strong> that your judgment was correct, click more on the <strong>RIGHT</strong> of the scale;</p>
             <p>if you are <strong>less confident</strong>, click more on the <strong>LEFT</strong>.</p>
-            <p>Please do your best to rate your confidence accurately and do take advantage of the whole rating scale.</p>
+            <p>Please do your best to rate your confidence accurately and do take advantage of <strong>the whole rating scale.</strong></p>
             <p>Now, click on any point and press continue to proceed.</p>`),
     choices: "NO_KEYS",
     data: {
@@ -111,42 +111,48 @@ var confidence_rt = {
         //data.current_coherence = jsPsych.data.get().last(2).values()[0].current_coherence; // get current coherence
         data.correct = jsPsych.data.get().last(2).values()[0].correct; // get last trial correctness
         data.response = parseInt(data.response);
-        console.log(`Confidence selected: ${data.response}`);
+        //console.log(`Confidence selected: ${data.response}`);
 
         // add confidence data to the previous trial
         jsPsych.data.get().last(2).values()[0].confidence = data.response;
     }
 };
 
-// global confidence at the end of each task
-var global_confidence = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: `
-        <p>In this task, what percentage of trials do you think you got correct?</p>
-        <p>(Click on the slider to choose between 0% and 100%)</p>
-    `,
-    labels: seq(0, 100, by=10).map(d => `${d}%`),
-    min: 0,
-    max: 100,
-    step: 1,
-    slider_start: 50,
-    require_movement: true,
-    data: {
-        type: 'global_confidence'
-    },
-    // Hide the slider thumb until response
-    on_load: function () {
-        document.getElementById('jspsych-html-slider-response-response').classList.add('hidden');
-        document.getElementById('jspsych-html-slider-response-response')
-	    .addEventListener('click', function (e) {
-		e.target.classList.remove('hidden');
-            });
-    },
-    on_finish: function(data) {
-        console.log(`Estimated accuracy: ${data.response}%`);
+// global confidence
+function global_confidence (prompt) {
+    return {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: prompt,
+        labels: seq(0, 100, by=10).map(d => `${d}%`),
+        min: 0,
+        max: 100,
+        step: 1,
+        slider_start: 50,
+        require_movement: true,
+        data: {
+            type: 'global_confidence'
+        },
+        // Hide the slider thumb until response
+        on_load: function () {
+            document.getElementById('jspsych-html-slider-response-response').classList.add('hidden');
+            document.getElementById('jspsych-html-slider-response-response')
+            .addEventListener('click', function (e) {
+            e.target.classList.remove('hidden');
+                });
+     },
+        on_finish: function(data) {
+            //console.log(`Estimated accuracy: ${data.response}%`);
     }
+}
 };
-
+var pre_global_confidence = global_confidence(`
+    <p>Before starting the task, what percentage of trials do you think you will get correct?</p>
+    <p>(Click on the slider to choose between 0% and 100%)</p>
+`)
+var post_global_confidence = global_confidence(`
+    <p>In this task, what percentage of trials do you think you got correct?</p>
+    <p>(Click on the slider to choose between 0% and 100%)</p>
+`)
 ///////////////////////////////////////////////////////////////////////////////
 //                                RDM task components
 ///////////////////////////////////////////////////////////////////////////////
@@ -166,7 +172,7 @@ var rdm_pages = [
         `],
         [`
         <p><strong>Looking good!</strong></p>
-        <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgement, but sometimes less sure.</p>
+        <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgement, but sometimes less sure - that's totally normal!</p>
         <p>Therefore, we would like to know your confidence about each judgments.</p>
         `],
         [`
@@ -208,23 +214,32 @@ var example_rdm_stimuli = {
 };
 
 var example_rdm_decision = {
-    timeline: [{
-	type: jsPsychHtmlButtonResponse,
-	stimulus: `<p>During the task, click on the <strong>LEFT</strong> button if you think more bees are moving left, or the <strong>RIGHT</strong> button if you think more bees are moving right.</p>
-<p>On the last page, the stimulus was moving left.</p><p><b>So, please click on the left button to proceed.</b></p>`,
-	choices: ['Left', 'Right'],
-	data: {
-            type: 'example_rdm_decision',
-	},
-    }],
-    loop_function: function(data) {
-	let clicked_right = data.values()[0].response == 1;
+  timeline: [{
+    type: jsPsychHtmlButtonResponse,
+    stimulus: function() {
+      var last_trial = jsPsych.data.get().last(1).values()[0];
+      var warning = "";
 
-	if (clicked_right)
-	    alert("You've clicked on the button on the right! Please click on the button on the left to proceed.");
-	
-	return clicked_right;
-    }
+      if (last_trial && last_trial.type === 'example_rdm_decision' && last_trial.response == 1) {
+        warning = `<p style="font-weight:bold;">
+          You\'ve clicked the RIGHT button! Please click the LEFT button to proceed.
+        </p>`;
+      }
+
+      return `
+        <p>During the task, click on the <strong>LEFT</strong> button if you think more bees are moving left, 
+        or the <strong>RIGHT</strong> button if you think more bees are moving right.</p>
+        <p>On the last page, the stimulus was moving left.</p>
+        <p><b>So, please click on the LEFT button to proceed.</b></p>
+        ${warning}
+      `;
+    },
+    choices: ['Left', 'Right'],
+    data: { type: 'example_rdm_decision' },
+  }],
+  loop_function: function(data) {
+    return data.values()[0].response == 1; 
+  }
 };
 
 var rdm_stimuli = {
@@ -243,7 +258,7 @@ var rdm_stimuli = {
     on_finish: function (data) {
         // store currect coherence
         data.current_coherence = coherence;
-        console.log(`Stimulus shown with direction: ${data.target}, coherence: ${data.current_coherence}`);
+        //console.log(`Stimulus shown with direction: ${data.target}, coherence: ${data.current_coherence}`);
     }
 };
 
@@ -263,7 +278,7 @@ var rdm_decision = {
         data.response = data.response ? 'right' : 'left';
         data.correct = (data.response === data.target) ? 1 : 0;
 
-        console.log(`Trial ${data.trial} (${data.phase}): Coherence=${coherence.toFixed(3)}, Correct=${data.correct}, Reversals=${reversals.length}`);
+        //console.log(`Trial ${data.trial} (${data.phase}): Coherence=${coherence.toFixed(3)}, Correct=${data.correct}, Reversals=${reversals.length}`);
 
         // apply staircase rule, update coherence and step size
         staircaseEvaluator(data.correct);
@@ -297,7 +312,7 @@ var wm_pages = [
     `],
     [`
     <p><strong>Looking good!</strong></p>
-    <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgment, but sometimes less sure.</p>
+    <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgment, but sometimes less sure - that's totally normal!</p>
     <p>Therefore, we would like to know your <strong>confidence about each judgment.</strong></p>
     `],
     [`
@@ -349,7 +364,24 @@ var example_wm_stimuli = {
 var example_wm_decision = {
     timeline: [{
 	type: jsPsychHtmlButtonResponse,
-	stimulus: '<p>During the task, click on the flower that has been just shown to you.</p><p>In the previous example, you\'ve seen the flower on the left but not the one on the right.</p><p>In this case, you should click on the flower on the left.</p><p>Now, click on the flower on the left to proceed.</p>',
+	stimulus: function() {
+      var last_trial = jsPsych.data.get().last(1).values()[0];
+      var warning = "";
+
+      if (last_trial && last_trial.type === 'example_wm_decision' && last_trial.response == 1) {
+        warning = `<p style="font-weight:bold;">
+          You\'ve clicked on the flower on the right! Please click on the flower on the left to proceed.
+        </p>`;
+      }
+
+      return `
+        <p>During the task, click on the flower that has been just shown to you.</p>
+        <p>In the previous example, you\'ve seen the flower on the left but not the one on the right.</p>
+        <p>In this case, you should click on the flower on the left.</p>
+        <p>Now, click on the flower on the left to proceed.</p>        
+        ${warning}
+      `;
+    },
 	choices: function() {
             let flowers = [];
             flowers.push(drawFlower({n_petals: 6, shape: 'oval', center_color: '#4B2F3E', petal_color: '#FFD30D',layered: true, n_leaves: 0, angle: 100, size: WM_stimuli_size}));
@@ -364,12 +396,8 @@ var example_wm_decision = {
 	},
     }],
     loop_function: function(data) {
-	let clicked_right = data.values()[0].response == 1;
+	    return data.values()[0].response == 1; 
 
-	if (clicked_right)
-	    alert("You've clicked on the flower on the right! Please click on the flower on the left to proceed.");
-	
-	return clicked_right;
     }
 };
 
@@ -377,9 +405,13 @@ var wm_stimuli = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: function () {
         let flowers = [];
-        wm_stimuli_params = [];
+        wm_stimuli_params = [];        
         for (let i = 0; i < set_size+1; i++) {
             let params = generateFlowerParams();
+            //ensure no duplicates
+            while (wm_stimuli_params.some(p => JSON.stringify(p) === JSON.stringify(params))) {
+                params = generateFlowerParams();
+            }
             wm_stimuli_params.push(params);
             flowers.push(drawFlower(params));
         }
@@ -405,7 +437,7 @@ var wm_stimuli = {
     on_finish: function (data) {
         data.current_set_size = set_size;
         data.wm_stimuli_params = JSON.stringify(wm_stimuli_params);
-        console.log(`Current set_size: ${data.current_set_size}`);
+        //console.log(`Current set_size: ${data.current_set_size}`);
     }
 };
 
@@ -423,7 +455,7 @@ var wm_decision = {
         }
 
         let target_position = jsPsych.evaluateTimelineVariable('target');
-        console.log(`Target flower index: ${target_index}, position: ${target_position}`);
+        //.log(`Target flower index: ${target_index}, position: ${target_position}`);
 
         if (target_position === 'left') {
             flowers.push(drawFlower(target_params));
@@ -446,7 +478,7 @@ var wm_decision = {
         data.response = data.response === 0 ? 'left' : 'right';
         data.correct = (data.response === data.target) ? 1 : 0;
 
-        console.log(`Response=${data.response}, Correct=${data.correct}`);
+        //console.log(`Response=${data.response}, Correct=${data.correct}`);
 
         staircaseEvaluator(data.correct,'wm');
 
@@ -508,7 +540,7 @@ function task_instructions(pages, example_stimuli, example_decision, decision_pr
     });
 
     return {
-        timeline: [instructions[0], example_stimuli, instructions[1],
+        timeline: [instructions[0], example_stimuli, instructions[1], pre_global_confidence,
 		   example_decision, instructions[2], decision_practice,
 		   instructions[3], example_confidence_rt, instructions[4],
 		   confidence_practice, instructions[5]]
@@ -551,7 +583,7 @@ function main_task(block_variables, stimulus, decision, emoji) {
                 // end of the last block
                 block_timeline.push({
                     type: jsPsychHtmlButtonResponse,
-                    stimulus: '<p>You have completed all blocks of the main task!</p><p>Click on the button below to proceed to the final questions.</p>',
+                    stimulus: '<p>You have completed all blocks of the main task!</p><p>Click on the button below to proceed to the final question about this task.</p>',
                     choices: ['Continue'],
                     trial_duration: null,
                     data: { phase: 'end_of_main_task' }
@@ -569,11 +601,11 @@ var wm_main_task = main_task(wm_main_task_block_variables, wm_stimuli, wm_decisi
 var tasks = jsPsych.randomization.shuffle([{
     name: 'rdm',
     emoji: '🐝',
-    timeline: [rdm_instructions, rdm_main_task, global_confidence]
+    timeline: [rdm_instructions, rdm_main_task, post_global_confidence]
 }, {
     name: 'wm',
     emoji: '🌹',
-    timeline: [wm_instructions, wm_main_task, global_confidence]
+    timeline: [wm_instructions, wm_main_task, post_global_confidence]
 }]);
 
 var general_instructions = {

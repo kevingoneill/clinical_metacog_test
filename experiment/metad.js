@@ -7,7 +7,7 @@
     - copy both `model.js` and `model.wasm` to your local computer
 */
 import StanModel from "https://cdn.jsdelivr.net/npm/tinystan/+esm"; // import directly from jsDelivr
-import createModule from "../analysis/metad_flat.js";
+import createModule from "./metad_flat.js";
 
 // simple print callback to replace printCallbackSponge because it cannot be directly imported in esm version
 function makePrintCallback() {

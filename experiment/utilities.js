@@ -8,9 +8,22 @@ function seq(start = 1, stop = 1, by=1) {
 function fullscreen(on) {
     return {
         type: jsPsychFullscreen,
-        fullscreen_mode: on
+        fullscreen_mode: on,
+        delay_after: 0
     }
 }
+function check_fullscreen() {
+  return {
+    timeline: function() {
+      let t = [];
+      if (!document.fullscreenElement) {
+        t.push(fullscreen(true));
+      }
+      return t;
+    }
+  }
+}
+
 
 // calculate the Euclidean distance between (x1, y1) and (x2, y2)
 function distance(x1, y1, x2, y2) {

@@ -82,10 +82,10 @@
         var confidence_labels = ['Guess', '', '', '', 'Confident'];
 
         // trial numbers
-        var n_decision_practice = 1; // number of decision trials for practice
-        var n_confidence_practice = 1; // number of confidence trials for practice
-        var n_block = 2; // number of blocks in the main task
-        var n_per_block = 10;
+        var n_decision_practice = 5; // number of decision trials for practice
+        var n_confidence_practice = 3; // number of confidence trials for practice
+        var n_block = 3; // number of blocks in the main task
+        var n_per_block = 25;
         var n_main = n_block * n_per_block; // number of main trials
 
         
@@ -268,12 +268,12 @@
         ///////////////////////////////////////////////////////////////////////////////
         var run = function() {
             jsPsych.run([
-		fullscreen(true), 
+		        fullscreen(true), 
                 preload,
-                browser_check, information, consent,
+                //browser_check, information, consent,
                 general_instructions,
-                experiment
-                fullscreen(false), age, gender, attn_check, comments  // post-experiment questions
+                experiment,
+                fullscreen(false)//, age, gender, attn_check, comments  // post-experiment questions
             ]);
         }
 
