@@ -81,12 +81,11 @@ var feedback = {
 // example confidence rating
 var example_confidence_rt = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus:
+    stimulus: // change to 4-point scale: confident-right, somewhat confident-middle, guess-left
         createConfidenceStimulus(
-            `<p>A rating scale as shown below is used throughout the task.</p>
-            <p>If you are <strong>more confident</strong> that your judgment was correct, click more on the <strong>RIGHT</strong> of the scale;</p>
-            <p>if you are <strong>less confident</strong>, click more on the <strong>LEFT</strong>.</p>
-            <p>Please do your best to rate your confidence accurately and do take advantage of <strong>the whole rating scale.</strong></p>
+            `<p>We will ask you to rate your <strong>confidence</strong> on the following scale.</p>
+            <p>Please try your best to rate your confidence <strong>accurately</strong>.</p> 
+            <p>Try to use <strong>every point</strong> on the scale.</p>
             <p>Now, click on any point and press continue to proceed.</p>`),
     choices: "NO_KEYS",
     data: {
@@ -163,7 +162,7 @@ var rdm_pages = [
         <p>🔍 Please help us observe the <strong>direction </strong> of the waggle dance! </p>
         `],
         [`
-        <p> 🔍 In the following task, your job is to determine the overall direction of the bees' motion—left or right.</p>
+        <p> 🔍 In the following task, your job is to determine the overall direction of the bees' motion — left or right.</p>
         `],
         [`
         <p> In addition, after your decision, we will tell you whether your judgment was correct.</p>
@@ -172,8 +171,8 @@ var rdm_pages = [
         `],
         [`
         <p><strong>Looking good!</strong></p>
-        <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgement, but sometimes less sure - that's totally normal!</p>
-        <p>Therefore, we would like to know your confidence about each judgments.</p>
+        <p>This task is supposed to be quite challenging, so sometimes you'll be more or less confident in your response — that's totally normal!</p>
+        <p>Therefore, we would like to know your confidence about each judgment.</p>
         `],
         [`
         <p>Great!</p>
@@ -299,20 +298,20 @@ var rdm_decision = {
 var wm_pages = [
     [`
     <p>In this task, you’ll be observing and memorizing flowers with various shapes and colors 🌹🌸🌼🌺.</p>
-    `],
+    `],//remove "In the following task," use lists
     [`
-    <p> 🧠 In the following task, your job is to try to memorize the flowers carefully.</p>
-    <p>Right after, you’ll be shown two flowers side by side.</p>
+    <p> 🧠 In the following task, your job is to try to memorize the flowers.</p>
+    <p>Right after, you’ll see two flowers side by side.</p>
     <p>Your task is to pick the one that has been just shown to you.</p>
     `],
     [`
-    <p> In addition, after your decision, we will tell you whether your judgment was correct.</p>
-    <p> Now, let's practice a few times.</p>
+    <p> Now, let's practice.</p>
+    <p> For the practice, we will tell you whether your judgment was correct.</p>
     <p> ⚠️ The flowers will appear for a very short time, so please pay attention!</p>
     `],
     [`
     <p><strong>Looking good!</strong></p>
-    <p>This task is supposed to be quite challenging, so it could happen that sometimes you are sure you made a correct judgment, but sometimes less sure - that's totally normal!</p>
+    <p>This task is supposed to be quite challenging, so sometimes you'll be more or less confident in your response - that's totally normal!</p>
     <p>Therefore, we would like to know your <strong>confidence about each judgment.</strong></p>
     `],
     [`

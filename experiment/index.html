@@ -78,8 +78,8 @@
         var EXPERIMENT_WIDTH = 600;
         var MINIMUM_VALID_RT = 250;   // minimum valid reaction time (ms)
 
-        var confidence_levels = 5;
-        var confidence_labels = ['Guess', '', '', '', 'Confident'];
+        var confidence_levels = 4;
+        var confidence_labels = ['Complete <br> Guess', 'Slightly <br> Confident', 'Somewhat <br> Confident', 'More <br> Confident'];
 
         // trial numbers
         var n_decision_practice = 5; // number of decision trials for practice
@@ -108,7 +108,7 @@
         var dotImage = 'img/imgBee.png';
 
         // staircase parameters
-        var coherence = 0.25; // starting coherence level
+        var coherence = 0.15; // starting coherence level
         var step_size = 0.05; // initial step size
         var min_step_size = 0.01; // minimum step size
 
@@ -268,7 +268,7 @@
         ///////////////////////////////////////////////////////////////////////////////
         var run = function() {
             jsPsych.run([
-		        fullscreen(true), 
+                fullscreen(true),
                 preload,
                 //browser_check, information, consent,
                 general_instructions,
