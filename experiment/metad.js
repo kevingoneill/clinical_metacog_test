@@ -47,7 +47,7 @@ function _analyze(stan_params = {}, attempts = 1) {
  *   value:
  *     an object containing the model draws  
  */
-function analyze(stan_params = {}, num_attempts = 100) {
+function analyze(stan_params = {}, num_attempts = 5) {
     return _analyze(stan_params, num_attempts)
         .catch(() => {
             throw new Error(`Analysis failed after ${num_attempts} attempts.`)

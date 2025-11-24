@@ -67,6 +67,7 @@ function standata(task='rdm_decision') {
     }
 }
 
+
 // apply func to every value of obj
 function objMap(obj, func) {
     return Object.fromEntries(Object.entries(obj).map(([k, v]) => [k, func(v)]));

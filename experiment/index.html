@@ -79,13 +79,13 @@
         var MINIMUM_VALID_RT = 250;   // minimum valid reaction time (ms)
 
         var confidence_levels = 4;
-        var confidence_labels = ['Complete <br> Guess', 'Slightly <br> Confident', 'Somewhat <br> Confident', 'More <br> Confident'];
+        var confidence_labels = ['Complete <br> Guess', 'Slightly <br> Confident', 'Somewhat <br> Confident', 'More <br> Confident'];//, 'Very <br> Confident', 'Absolutely <br> Certain'];
 
         // trial numbers
         var n_decision_practice = 5; // number of decision trials for practice
         var n_confidence_practice = 3; // number of confidence trials for practice
         var n_block = 3; // number of blocks in the main task
-        var n_per_block = 25;
+        var n_per_block = 25; // number of trials per block
         var n_main = n_block * n_per_block; // number of main trials
 
         
@@ -149,7 +149,12 @@
         //                          Initialize jsPsych/JATOS
         ///////////////////////////////////////////////////////////////////////////////
         var JATOS = false;  // if true, load JATOS. use 'false' to run on a local server
-        
+        fetch('test.json').then(t => t.json())
+                .then(j => j.forEach(trial => {
+                    jsPsych.data.get().push(trial);
+                })).then(_ => {
+                    console.log(standata())
+                });
         // initialize jsPsych
         var jsPsych = initJsPsych({
             experiment_width: EXPERIMENT_WIDTH,
@@ -160,55 +165,65 @@
                 jsPsych.getDisplayElement().innerHTML = `
                     <div>
                         <p>Thanks for completing this experiment!</p>
-                        <div>
+                        <p>
+                            <button id="save" class="jspsych-btn" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
+                                Click here to download your data as a CSV file.
+                            </button>
+                        </p>
+                        <p>
+                            <button id="analyze" class="jspsych-btn">
+                                Start data analysis
+                            </button>
+                        </p>
+                        <div id="analysis-area" style="margin-top:20px; display:none;">
                           Analyzing confidence data...<span id="done"></span><br>
                           <span id="results"></span>
                         </div>
 
-                        <p>
-                            <button id="save" class="jspsych-btn" style="display: none;" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
-                                Click here to download your data as a CSV file.
-                            </button>
-                        </p>
+
                     </div>`;
+                document.getElementById("analyze").addEventListener("click", () => {
+
+                    document.getElementById("analysis-area").style.display = "block";
+                    document.getElementById("results").innerHTML = "";
 
                 // Analyze confidence data
-		Promise.all(tasks.map(t => t.name).map(async task => {
-		    return import("./metad.js")
-			.then(metad => metad.analyze({
-                            data: standata(task),
-                            num_chains: n_chains,
-                            num_samples: n_samples,
-                            num_warmup: n_warmup,
-			}))
-                    // get posterior quantiles
-			.then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
-                    // print to screen (TODO: maybe add jsPsych.addProperties()? )
-			.then(draws => {
-			    document.getElementById('results').innerHTML +=
-				`<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
-				stan_params.map(param => 
-				    `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
-				'</table></div></div>';
-			    
-			    // save model estimates to javascript data
-			    let o = {};
-			    stan_params.forEach(param => {
-				o[param+'_'+task] = draws[param][0];
-			    })
-			    jsPsych.data.addProperties(o);
-			});
-		})).then(() => {
-		    document.getElementById('done').innerHTML = 'done!';
-		    document.getElementById('save').style.display= 'inline';
-		}).catch((err) => {
-                    // print errors to the screen
-                    document.getElementById('results').innerHTML = 
-			'<br>There has been an error while analyzing the confidence data:<br>' + err;
+                    Promise.all(tasks.map(t => t.name).map(async task => {
+                        return import("./metad.js")
+                        .then(metad => metad.analyze({
+                                        data: standata(task),
+                                        num_chains: n_chains,
+                                        num_samples: n_samples,
+                                        num_warmup: n_warmup,
+                        }))
+                                // get posterior quantiles
+                        .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
+                                // print to screen (TODO: maybe add jsPsych.addProperties()? )
+                        .then(draws => {
+                            document.getElementById('results').innerHTML +=
+                            `<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
+                            stan_params.map(param => 
+                                `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
+                            '</table></div></div>';
+                            
+                            // save model estimates to javascript data
+                            let o = {};
+                            stan_params.forEach(param => {
+                            o[param+'_'+task] = draws[param][0];
+                            })
+                            jsPsych.data.addProperties(o);
+                        });
+                    })).then(() => {
+                        document.getElementById('done').innerHTML = 'done!';
+                        document.getElementById('save').style.display= 'inline';
+                    }).catch((err) => {
+                                // print errors to the screen
+                                document.getElementById('results').innerHTML = 
+                        '<br>There has been an error while analyzing the confidence data:<br>' + err;
 
-		    document.getElementById('save').style.display= 'inline';
-		});
-                
+                        document.getElementById('save').style.display= 'inline';
+                    });
+                });
                 // Use this to save data via JATOS
                 if (JATOS) {
                     jatos.endStudy(data.csv());
@@ -272,6 +287,7 @@
                 preload,
                 //browser_check, information, consent,
                 general_instructions,
+                //rdm_main_task
                 experiment,
                 fullscreen(false)//, age, gender, attn_check, comments  // post-experiment questions
             ]);
