@@ -53,7 +53,7 @@ function createConfidenceStimulus(prompt, numOptions = confidence_levels, option
             ${Array.from({ length: numOptions }, (_, i) => {
         //cursor: pointer - change cursor to pointer on hover
         // transition: all 0.2s - smooth transition for hover effect
-        return `<div onclick="selectConfidence(${i + 1})" style="text-align: center; padding: 2px; cursor: pointer;" id="conf-${i + 1}">
+                return `<div onclick="selectConfidence(${i + 1})" style="text-align: center; padding: 2px; cursor: pointer; line-height: normal;" id="conf-${i + 1}">
                             <div style="width: 100px; height: 60px; background-color: rgba(0, 150, 255, ${opacities[i]}); 
                                         border: 2px solid ${baseColor}; border-radius: 8px; margin: 0 auto 5px; 
                                         transition: all 0.2s;"></div>

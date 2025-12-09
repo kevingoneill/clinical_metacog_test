@@ -39,34 +39,34 @@ function zip(names, values) {
 
 // read the jsPsych data to compile the confidence data
 // returns a flattened array C[response, accuracy, confidence]
-function standata(task='rdm_decision') {
+function standata(task = 'rdm') {
     // initialize confidence counts to 0
     // C[response, correct, confidence]
     let C = Array.from(Array(2),
         () => Array.from(Array(2),
             () => Array(confidence_levels).fill(0)));
 
-    // gather all RDM decision trials
-    // (assuming confidence is added as an attribute)
+    // count confidence ratings over all decision trials
     jsPsych.data.get()
-        .filter({ phase: "main_task", task: task, type: task+'_decision' })
+        .filter({ phase: "main_task", task: task, type: task + '_decision' })
         .values()
         .forEach(trial => {
-            C[trial.response == 'right' ? 1 : 0][trial.correct][trial.confidence - 1]++;
+            // ensure confidence is in {1, ..., confidence_levels}
+            let c = Math.max(1, Math.min(trial.confidence, confidence_levels)) - 1;
+            C[trial.response == 'right' ? 1 : 0][trial.correct][c]++;
         });
 
     return {
         "K": confidence_levels,
-        "counts": C.flat(Infinity),
-        "prior_sd_d_prime": 0.5,
-        "prior_sd_c": 0.5,
-        "prior_sd_log_M": 0.25,
+        "C": C,
+        "prior_sd_d_prime": 1,
+        "prior_sd_c": 1,
+        "prior_sd_log_M": 1,
         "prior_mean_meta_c2": -1,
-        "prior_sd_meta_c2": 1,
+        "prior_sd_meta_c2": 2,
         "prior_only": 0
     }
 }
-
 
 // apply func to every value of obj
 function objMap(obj, func) {

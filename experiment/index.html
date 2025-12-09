@@ -27,50 +27,18 @@
     <script src="flowers.js"></script>
 
     <style>
-      /* use hidden class to hide slider thumb */
-      .jspsych-slider.hidden::-webkit-slider-thumb {
-          visibility: hidden;
-      }
+        /* use hidden class to hide slider thumb */
+        .jspsych-slider.hidden::-webkit-slider-thumb {
+            visibility: hidden;
+        }
 
-      .jspsych-slider.hidden::-moz-range-thumb {
-          visibility: hidden;
-      }
-      
-      /* Full-screen background image with opacity */
-      /*
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100vh;
-        position: relative;
-    }
-    
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('img/bg.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0.2;
-        z-index: -1;
-    }
-    
-    
-    #jspsych-target {
-        position: relative;
-        z-index: 1;
-    }
-     */
+        .jspsych-slider.hidden::-moz-range-thumb {
+            visibility: hidden;
+        }
     </style>
 </head>
 
 <body>
-
     <script>
         ///////////////////////////////////////////////////////////////////////////////
         //                              Task parameters
@@ -88,7 +56,7 @@
         var n_per_block = 25; // number of trials per block
         var n_main = n_block * n_per_block; // number of main trials
 
-        
+
         // basic RDM parameters
         var RDM_DotSpeed = 2;
         var RDM_numDots = 100;
@@ -123,7 +91,7 @@
         var previous_direction = 0; // -1 = getting easier, 1 = getting harder, 0 = no change
 
         var results_precision = 3;  // the number of digits to print SDT stats
-        
+
         // basic WM parameters
         WM_duration = 2000; // duration of WM stimulus
         post_stimulus_gap = 500; // gap (ms) between WM stimulus and response screen
@@ -134,7 +102,7 @@
         var WM_box_height = 500;
         var WM_stimuli_size = 150;
         // WM staircase parameters
-        var set_size= 2; // starting set size
+        var set_size = 2; // starting set size
         var max_set_size = 6; // maximum set size
         var min_set_size = 2; // minimum set size
         var step_size_WM = 1; // initial step size
@@ -143,24 +111,18 @@
         const stan_params = ['d_prime', 'c', 'log_M'];
         const n_chains = 4;
         const n_samples = 1000;
-        const n_warmup = 250;
+        const n_warmup = 500;
 
         ///////////////////////////////////////////////////////////////////////////////
         //                          Initialize jsPsych/JATOS
         ///////////////////////////////////////////////////////////////////////////////
         var JATOS = false;  // if true, load JATOS. use 'false' to run on a local server
-        fetch('test.json').then(t => t.json())
-                .then(j => j.forEach(trial => {
-                    jsPsych.data.get().push(trial);
-                })).then(_ => {
-                    console.log(standata())
-                });
+
         // initialize jsPsych
         var jsPsych = initJsPsych({
             experiment_width: EXPERIMENT_WIDTH,
             minimum_valid_rt: MINIMUM_VALID_RT,
             on_finish: function (data) {
-
                 // Display completion screen
                 jsPsych.getDisplayElement().innerHTML = `
                     <div>
@@ -179,55 +141,57 @@
                           Analyzing confidence data...<span id="done"></span><br>
                           <span id="results"></span>
                         </div>
-
-
                     </div>`;
-                document.getElementById("analyze").addEventListener("click", () => {
 
+                document.getElementById("analyze").addEventListener("click", () => {
                     document.getElementById("analysis-area").style.display = "block";
+                    document.getElementById("done").innerHTML = "";
                     document.getElementById("results").innerHTML = "";
 
-                // Analyze confidence data
+                    // Analyze confidence data
                     Promise.all(tasks.map(t => t.name).map(async task => {
                         return import("./metad.js")
-                        .then(metad => metad.analyze({
-                                        data: standata(task),
-                                        num_chains: n_chains,
-                                        num_samples: n_samples,
-                                        num_warmup: n_warmup,
-                        }))
-                                // get posterior quantiles
-                        .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
-                                // print to screen (TODO: maybe add jsPsych.addProperties()? )
-                        .then(draws => {
-                            document.getElementById('results').innerHTML +=
-                            `<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
-                            stan_params.map(param => 
-                                `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
-                            '</table></div></div>';
-                            
-                            // save model estimates to javascript data
-                            let o = {};
-                            stan_params.forEach(param => {
-                            o[param+'_'+task] = draws[param][0];
-                            })
-                            jsPsych.data.addProperties(o);
-                        });
+                            .then(metad => metad.analyze({
+                                "data": standata(task),
+                                "num_chains": n_chains,
+                                "num_samples": n_samples,
+                                "num_warmup": n_warmup,
+                                "init_radius": 0,
+                                "refresh": 0
+                            }))
+                            // get posterior quantiles
+                            .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
+                            // print to screen (TODO: maybe add jsPsych.addProperties()? )
+                            .then(draws => {
+                                document.getElementById('results').innerHTML +=
+                                    `<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
+                                    stan_params.map(param =>
+                                        `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
+                                    '</table></div></div>';
+
+                                // save model estimates to javascript data
+                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task),
+                                    stan_params.map(p => draws[p][0])));
+                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_lower'),
+                                    stan_params.map(p => draws[p][1])));
+                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_upper'),
+                                    stan_params.map(p => draws[p][2])));
+                            });
                     })).then(() => {
                         document.getElementById('done').innerHTML = 'done!';
-                        document.getElementById('save').style.display= 'inline';
+                        document.getElementById('save').style.display = 'inline';
                     }).catch((err) => {
-                                // print errors to the screen
-                                document.getElementById('results').innerHTML = 
-                        '<br>There has been an error while analyzing the confidence data:<br>' + err;
-
-                        document.getElementById('save').style.display= 'inline';
+                        // print errors to the screen
+                        document.getElementById('results').innerHTML =
+                            '<br>There has been an error while analyzing the confidence data:<br>' + err;
+                        document.getElementById('save').style.display = 'inline';
                     });
+
+                    // Use this to save data via JATOS
+                    if (JATOS) {
+                        jatos.endStudy(data.csv());
+                    }
                 });
-                // Use this to save data via JATOS
-                if (JATOS) {
-                    jatos.endStudy(data.csv());
-                }
             }
         });
 
@@ -267,7 +231,7 @@
 
         var rdm_main_task_block_variables = splitIntoBlocks(rdm_main_task_variables, n_block);
         var wm_main_task_block_variables = splitIntoBlocks(wm_main_task_variables, n_block);
-        
+
         ///////////////////////////////////////////////////////////////////////////////
         //                     Randomize participant-level data
         ///////////////////////////////////////////////////////////////////////////////
@@ -281,13 +245,12 @@
         ///////////////////////////////////////////////////////////////////////////////
         //                         Launch experiment
         ///////////////////////////////////////////////////////////////////////////////
-        var run = function() {
+        var run = function () {
             jsPsych.run([
                 fullscreen(true),
                 preload,
                 //browser_check, information, consent,
                 general_instructions,
-                //rdm_main_task
                 experiment,
                 fullscreen(false)//, age, gender, attn_check, comments  // post-experiment questions
             ]);
@@ -295,13 +258,24 @@
 
         // run jsPsych
         if (JATOS) {
-	    let script = document.createElement('script');
+            let script = document.createElement('script');
             script.type = 'text/javascript';
-	    script.onload = () => { jatos.onLoad(run); };	  
+            script.onload = () => { jatos.onLoad(run); };
             script.src = 'jatos.js';
-	    document.head.appendChild(script);
+            document.head.appendChild(script);
         } else {
-            run();
+            //run();
+
+            /*
+            fetch('experiment_data_e8sll5m2tvroonq.json').then(t => t.json())
+                .then(j => j.forEach(trial => {
+                    jsPsych.data.get().push(trial);
+                })).then(_ => {
+                    console.log(standata());
+
+                    jsPsych.run([fullscreen(false)]);
+                });
+            */
         }
     </script>
 </body>
