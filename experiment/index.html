@@ -116,7 +116,7 @@
         ///////////////////////////////////////////////////////////////////////////////
         //                          Initialize jsPsych/JATOS
         ///////////////////////////////////////////////////////////////////////////////
-        var JATOS = false;  // if true, load JATOS. use 'false' to run on a local server
+        var JATOS = true;  // if true, load JATOS. use 'false' to run on a local server
 
         // initialize jsPsych
         var jsPsych = initJsPsych({
@@ -140,6 +140,11 @@
                         <div id="analysis-area" style="margin-top:20px; display:none;">
                           Analyzing confidence data...<span id="done"></span><br>
                           <span id="results"></span>
+                        </div>
+                        <div id="exit_div" style="margin-top:20px; display:none;">
+                            <button id="exit" class="jspsych-btn" onclick="if (JATOS) { jatos.endStudy(data.csv()); }">
+                                Click here to exit and save to JATOS.
+                            </button>
                         </div>
                     </div>`;
 
@@ -180,17 +185,14 @@
                     })).then(() => {
                         document.getElementById('done').innerHTML = 'done!';
                         document.getElementById('save').style.display = 'inline';
+
+                        document.getElementById('exit_div').style.display = 'block';
                     }).catch((err) => {
                         // print errors to the screen
                         document.getElementById('results').innerHTML =
                             '<br>There has been an error while analyzing the confidence data:<br>' + err;
                         document.getElementById('save').style.display = 'inline';
                     });
-
-                    // Use this to save data via JATOS
-                    if (JATOS) {
-                        jatos.endStudy(data.csv());
-                    }
                 });
             }
         });
@@ -264,10 +266,10 @@
             script.src = 'jatos.js';
             document.head.appendChild(script);
         } else {
-            //run();
+            run();
 
             /*
-            fetch('experiment_data_e8sll5m2tvroonq.json').then(t => t.json())
+            fetch('experiment_data_95e9u0y5hukzmou.json').then(t => t.json())
                 .then(j => j.forEach(trial => {
                     jsPsych.data.get().push(trial);
                 })).then(_ => {
