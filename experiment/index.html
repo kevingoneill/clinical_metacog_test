@@ -127,72 +127,65 @@
                 jsPsych.getDisplayElement().innerHTML = `
                     <div>
                         <p>Thanks for completing this experiment!</p>
-                        <p>
-                            <button id="save" class="jspsych-btn" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv')">
-                                Click here to download your data as a CSV file.
-                            </button>
-                        </p>
-                        <p>
-                            <button id="analyze" class="jspsych-btn">
-                                Start data analysis
-                            </button>
-                        </p>
+                        
                         <div id="analysis-area" style="margin-top:20px; display:none;">
                           Analyzing confidence data...<span id="done"></span><br>
-                          <span id="results"></span>
+                          <span id="results" style="display: none;"></span>
                         </div>
+                        <br>
                         <div id="exit_div" style="margin-top:20px; display:none;">
+                            Would you like to download the data locally?
+                            <br>                            
+                            <button id="exit" class="jspsych-btn" onclick="jsPsych.data.get().localSave('csv', 'experiment_data_${participant_id}.csv'); if (JATOS) { jatos.endStudy(jsPsych.data.get().csv()); }">
+                                Yes
+                            </button>
                             <button id="exit" class="jspsych-btn" onclick="if (JATOS) { jatos.endStudy(jsPsych.data.get().csv()); }">
-                                Click here to exit and save to JATOS.
+                                No
                             </button>
                         </div>
                     </div>`;
 
-                document.getElementById("analyze").addEventListener("click", () => {
-                    document.getElementById("analysis-area").style.display = "block";
-                    document.getElementById("done").innerHTML = "";
-                    document.getElementById("results").innerHTML = "";
+                document.getElementById("analysis-area").style.display = "block";
+                document.getElementById("done").innerHTML = "";
+                document.getElementById("results").innerHTML = "";
 
-                    // Analyze confidence data
-                    Promise.all(tasks.map(t => t.name).map(async task => {
-                        return import("./metad.js")
-                            .then(metad => metad.analyze({
-                                "data": standata(task),
-                                "num_chains": n_chains,
-                                "num_samples": n_samples,
-                                "num_warmup": n_warmup,
-                                "init_radius": 0,
-                                "refresh": 0
-                            }))
-                            // get posterior quantiles
-                            .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
-                            // print to screen (TODO: maybe add jsPsych.addProperties()? )
-                            .then(draws => {
-                                document.getElementById('results').innerHTML +=
-                                    `<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
-                                    stan_params.map(param =>
-                                        `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
-                                    '</table></div></div>';
+                // Analyze confidence data
+                Promise.all(tasks.map(t => t.name).map(async task => {
+                    return import("./metad.js")
+                        .then(metad => metad.analyze({
+                            "data": standata(task),
+                            "num_chains": n_chains,
+                            "num_samples": n_samples,
+                            "num_warmup": n_warmup,
+                            "init_radius": 0,
+                            "refresh": 0
+                        }))
+                        // get posterior quantiles
+                        .then(draws => objMap(draws, a => math.quantileSeq(a, [.5, .025, .975])))
+                        // print to screen (TODO: maybe add jsPsych.addProperties()? )
+                        .then(draws => {
+                            document.getElementById('results').innerHTML +=
+                                `<br><div><b>${task.toUpperCase()} task results</b><div style="margin-left: 25px"><table>` +
+                                stan_params.map(param =>
+                                    `<tr><td style="text-align: right;"><strong>${param}:</strong></td><td>${formatEstimate(draws[param][0])}</td> <td>[${formatEstimate(draws[param][1])}, ${formatEstimate(draws[param][2])}]</td></tr>`).join('') +
+                                '</table></div></div>';
 
-                                // save model estimates to javascript data
-                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task),
-                                    stan_params.map(p => draws[p][0])));
-                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_lower'),
-                                    stan_params.map(p => draws[p][1])));
-                                jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_upper'),
-                                    stan_params.map(p => draws[p][2])));
-                            });
-                    })).then(() => {
-                        document.getElementById('done').innerHTML = 'done!';
-                        document.getElementById('save').style.display = 'inline';
+                            // save model estimates to javascript data
+                            jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task),
+                                stan_params.map(p => draws[p][0])));
+                            jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_lower'),
+                                stan_params.map(p => draws[p][1])));
+                            jsPsych.data.addProperties(zip(stan_params.map(p => p + '_' + task + '_upper'),
+                                stan_params.map(p => draws[p][2])));
+                        });
+                })).then(() => {
+                    document.getElementById('done').innerHTML = 'done!';
 
-                        document.getElementById('exit_div').style.display = 'block';
-                    }).catch((err) => {
-                        // print errors to the screen
-                        document.getElementById('results').innerHTML =
-                            '<br>There has been an error while analyzing the confidence data:<br>' + err;
-                        document.getElementById('save').style.display = 'inline';
-                    });
+                    document.getElementById('exit_div').style.display = 'block';
+                }).catch((err) => {
+                    // print errors to the screen
+                    document.getElementById('results').innerHTML =
+                        '<br>There has been an error while analyzing the confidence data:<br>' + err;
                 });
             }
         });
