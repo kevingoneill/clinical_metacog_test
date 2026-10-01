@@ -242,9 +242,10 @@
         ///////////////////////////////////////////////////////////////////////////////
         var run = function () {
             jsPsych.run([
-                fullscreen(true),
                 preload,
+                patient_number, session,
                 //browser_check, information, consent,
+                fullscreen(true),
                 general_instructions,
                 experiment,
                 fullscreen(false)//, age, gender, attn_check, comments  // post-experiment questions

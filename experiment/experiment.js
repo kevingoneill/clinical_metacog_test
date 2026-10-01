@@ -44,6 +44,39 @@ var browser_check = {
     }
 };
 
+//input patient number
+var patient_number = {
+    timeline: [{
+        type: jsPsychSurveyText,
+        questions: [{ name: "patient_number", prompt: "Patient number:", required: true }],
+        on_finish: function (data) {
+            data.measure = "patient_number";
+            data.response = parseInt(data.response.patient_number);
+        }
+    }],
+    loop_function: function (data) {
+        let response = parseInt(data.values()[0].response);
+        if (isNaN(response)) alert("Please enter a number.");
+        if (!isNaN(response) && (response <= 0)) alert("Please enter a valid number.");
+        return isNaN(response) || response <= 0;
+    }
+};
+
+var session = {
+    timeline: [{
+        type: jsPsychSurveyMultiChoice,
+        questions: [{
+            name: "session",
+            prompt: "Session:",
+            options: ["pre", "post"],
+            required: true
+        }],
+        on_finish: function (data) {
+            data.measure = "session";
+            data.response = data.response.session;
+        }
+    }]
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                Shared components
